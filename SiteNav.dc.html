@@ -10,7 +10,7 @@
 <helmet><script src="./site.js"></script></helmet>
 <div style="position:fixed;top:{{ top }};left:0;right:0;z-index:50;display:flex;justify-content:center;padding:0 clamp(12px,3vw,32px);pointer-events:none;transform:translateY({{ y }});transition:transform .42s cubic-bezier(.33,1,.68,1),top .5s cubic-bezier(.2,.7,.2,1)">
   <header style="pointer-events:auto;width:100%;max-width:{{ maxW }};height:{{ h }};display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 {{ padR }} 0 {{ padL }};border-radius:999px;background:{{ bg }};border:1px solid {{ border }};box-shadow:{{ shadow }};backdrop-filter:{{ blur }};-webkit-backdrop-filter:{{ blur }};color:{{ fg }};transition:max-width .6s cubic-bezier(.2,.7,.2,1),height .5s cubic-bezier(.2,.7,.2,1),padding .5s cubic-bezier(.2,.7,.2,1),background .5s,border-color .5s,box-shadow .5s,color .5s">
-    <a href="Home.dc.html" aria-label="Smithara Dental Care — home" style="display:flex;align-items:center;gap:11px;color:{{ fg }};flex:0 0 auto">
+    <a href="index.html" aria-label="Smithara Dental Care — home" style="display:flex;align-items:center;gap:11px;color:{{ fg }};flex:0 0 auto">
       <img src="assets/smithara-logo.png" alt="" width="42" height="42" style="display:block;width:{{ logoSize }};height:{{ logoSize }};border-radius:50%;transition:width .5s cubic-bezier(.2,.7,.2,1),height .5s cubic-bezier(.2,.7,.2,1);box-shadow:0 0 0 1px rgba(214,166,58,.35)">
       <span style="display:flex;flex-direction:column;line-height:1">
         <span style="font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:600;letter-spacing:.01em">Smithara</span>
@@ -71,7 +71,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:120},&quot;page&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;treatments&quot;,&quot;about&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;whatsapp&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
 const LINKS = [
-  ['home', 'Home', 'Home.dc.html'],
+  ['home', 'Home', 'index.html'],
   ['treatments', 'Treatments', 'Treatments.dc.html'],
   ['about', 'About', 'About.dc.html'],
   ['contact', 'Contact', 'Contact.dc.html'],

@@ -56,14 +56,16 @@
   if (document.body) start(); else document.addEventListener('DOMContentLoaded', start);
 
   try { sessionStorage.removeItem('sm-transition'); } catch (e) {}
-  // Same-page anchors (e.g. Home.dc.html#reviews while on Home) scroll smoothly instead of reloading.
+  // Same-page anchors (e.g. index.html#reviews while on Home) scroll smoothly instead of reloading.
+  // "/" and "/index.html" are treated as the same page.
+  function samePath(p) { return p.replace(/\/index\.html$/, '/'); }
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href]');
     if (!a || e.defaultPrevented || a.target === '_blank') return;
     var href = a.getAttribute('href');
-    if (!/\.dc\.html#/.test(href)) return;
+    if (!/\.html#/.test(href)) return;
     var url = new URL(href, location.href);
-    if (url.pathname !== location.pathname) return;
+    if (samePath(url.pathname) !== samePath(location.pathname)) return;
     var t = document.querySelector(url.hash);
     if (!t) return;
     e.preventDefault();
