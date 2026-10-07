@@ -1,0 +1,46 @@
+/* Phone-size refinements. Pages are styled inline, so these rules use !important to override. */
+@media (max-width: 640px) {
+  /* Button rows: full-width, centered buttons that are easy to tap */
+  .m-btns > a { flex: 1 1 100% !important; justify-content: center !important; }
+
+  /* Small inline links get a taller tap area */
+  .m-links a { display: inline-block; padding: 8px 0 !important; }
+
+  /* Home: highlights strip as a compact two-column grid */
+  .m-trust { grid-template-columns: 1fr 1fr !important; padding-top: 12px !important; padding-bottom: 12px !important; }
+  .m-trust > * { padding: 14px 12px 14px 0 !important; font-size: 14px !important; }
+  .m-trust > a { grid-column: 1 / -1; border-top: 1px solid rgba(250,248,243,.12); padding-top: 18px !important; margin-top: 4px; }
+
+  /* Gallery: consistent spacing instead of the desktop stagger */
+  .m-gallery { gap: 36px !important; }
+  .m-gallery > figure { margin: 0 !important; }
+
+  /* Numbered steps: smaller numerals and tighter rhythm */
+  .m-steps { gap: 40px !important; margin-top: 48px !important; }
+  .m-steps [data-reveal="num"] { font-size: 72px !important; }
+  .m-steps li > span[style*="height:1px"] { margin: 20px 0 16px !important; }
+
+  /* Reviews: swipeable row of cards */
+  .m-reviews {
+    display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px !important;
+    margin-left: -20px !important; margin-right: -20px !important; padding: 0 20px 8px;
+    scroll-padding: 0 20px; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  }
+  .m-reviews::-webkit-scrollbar { display: none; }
+  .m-reviews > * { flex: 0 0 86% !important; scroll-snap-align: start; min-height: 0 !important; padding: 26px 24px !important; }
+  .m-reviews p { font-size: 19px !important; margin-top: 18px !important; }
+  .m-swipe-hint { display: block !important; }
+
+  /* Contact details: label above value so the address has room */
+  .m-rows > div { grid-template-columns: 1fr !important; gap: 6px !important; padding: 18px 0 !important; }
+
+  /* Map: shorter on phones */
+  .m-map { min-height: 340px !important; }
+
+  /* Footer: two-column link groups with comfortable tap targets */
+  .m-footer-grid { grid-template-columns: 1fr 1fr !important; gap: 40px 20px !important; }
+  .m-footer-grid > :first-child, .m-footer-grid > :nth-child(2) { grid-column: 1 / -1; }
+  .m-footer-grid > :first-child > a { width: 100%; justify-content: center; }
+  .m-footer-grid nav > div:last-child, .m-footer-grid > div > div:last-child { gap: 0 !important; }
+  .m-footer-grid nav a, .m-footer-grid > div:not(:first-child) a { padding: 7px 0; }
+}

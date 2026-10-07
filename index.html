@@ -8,6 +8,7 @@
 <body>
 <x-dc>
 <helmet>
+<link rel="stylesheet" href="./mobile.css">
 <title>Smithara Dental Care · Dentist in Rajarajeshwari Nagar, Bengaluru</title>
 <meta name="description" content="Personalized dental care by Dr. Sushmita Raj at Smithara Dental Care, a dental clinic in Rajarajeshwari Nagar, Bengaluru.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,11 +38,11 @@ a:hover{color:#8B6B1F}
         <span style="display:block;overflow:hidden;padding-bottom:.08em"><span data-hero="3" data-line="" style="display:block;font-style:italic;color:#9A7420">thoughtfully cared for.</span></span>
       </h1>
       <p data-hero="4" style="margin:32px 0 0;font-size:clamp(17px,1.35vw,19px);line-height:1.7;color:#5E5B54;max-width:44ch;text-wrap:pretty">Personalized dental care by Dr. Sushmita Raj, focused on comfort, clarity and care designed around you.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:40px">
+      <div class="m-btns" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:40px">
         <a data-hero="5" href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:12px;height:58px;padding:0 30px;border-radius:6px;background:#19191C;color:#FFFFFF;font-size:15px;font-weight:600;transition:gap .45s cubic-bezier(.2,.7,.2,1),background .3s" style-hover="gap:18px;background:#0B0B0D;color:#FFFFFF">Book an Appointment <span aria-hidden="true" style="color:#D6A63A">→</span></a>
         <a data-hero="6" href="Treatments.dc.html" style="display:inline-flex;align-items:center;gap:12px;height:58px;padding:0 30px;border-radius:6px;border:1px solid #CFC8B8;color:#0B0B0D;font-size:15px;font-weight:600;transition:gap .45s cubic-bezier(.2,.7,.2,1),border-color .3s" style-hover="gap:18px;border-color:#0B0B0D;color:#0B0B0D">Explore Treatments <span aria-hidden="true" style="color:#8B6B1F">→</span></a>
       </div>
-      <div data-hero="7" style="display:flex;flex-wrap:wrap;gap:12px 36px;margin-top:56px;padding-top:22px;border-top:1px solid #DED9CD;font-size:14px;color:#5E5B54">
+      <div data-hero="7" class="m-links" style="display:flex;flex-wrap:wrap;gap:12px 36px;margin-top:56px;padding-top:22px;border-top:1px solid #DED9CD;font-size:14px;color:#5E5B54">
         <a href="tel:+919731391404" style="font-weight:600">+91 97313 91404</a>
         <a href="https://maps.app.goo.gl/Dq4h7Skoro9VBBkw8" target="_blank" rel="noopener">Rajarajeshwari Nagar, Bengaluru ↗</a>
       </div>
@@ -53,7 +54,7 @@ a:hover{color:#8B6B1F}
 </section>
 
 <section data-theme="dark" aria-label="Our approach" style="background:#19191C;color:#FAF8F3">
-  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,4.5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,4.5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))" class="m-trust">
     <div data-reveal="" style="padding:30px 24px 30px 0;display:flex;align-items:center;gap:14px;font-size:15px;font-weight:500"><svg aria-hidden="true" viewBox="0 0 10 10" width="9" height="9"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z" fill="#D6A63A"></path></svg>Personalized Care</div>
     <div data-reveal="" data-delay="80" style="padding:30px 24px 30px 0;display:flex;align-items:center;gap:14px;font-size:15px;font-weight:500"><svg aria-hidden="true" viewBox="0 0 10 10" width="9" height="9"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z" fill="#D6A63A"></path></svg>Modern Dentistry</div>
     <div data-reveal="" data-delay="160" style="padding:30px 24px 30px 0;display:flex;align-items:center;gap:14px;font-size:15px;font-weight:500"><svg aria-hidden="true" viewBox="0 0 10 10" width="9" height="9"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z" fill="#D6A63A"></path></svg>Patient-First Approach</div>
@@ -121,7 +122,7 @@ a:hover{color:#8B6B1F}
       </div>
       <p data-reveal="" data-delay="160" style="margin:0;font-size:17px;line-height:1.75;color:#5E5B54;max-width:44ch">A look inside Smithara, from the moment you arrive to your conversation with the doctor.</p>
     </div>
-    <div style="margin-top:clamp(56px,7vw,96px);display:flex;flex-wrap:wrap;align-items:flex-start;gap:56px 24px">
+    <div class="m-gallery" style="margin-top:clamp(56px,7vw,96px);display:flex;flex-wrap:wrap;align-items:flex-start;gap:56px 24px">
       <figure data-reveal="mask" style="margin:0;flex:1 1 520px;min-width:0">
         <div style="aspect-ratio:4/3"><dc-import name="Photo" style="display:block;width:100%;height:100%" slot="img-03-clinic-reception" label="03 · Clinic interior / reception · 4:3" hint-size="100%,100%"></dc-import></div>
         <figcaption style="margin-top:18px;display:flex;align-items:baseline;gap:14px"><span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:#8B6B1F">01</span><span style="font-size:15px;font-weight:600">Clinic Interior</span></figcaption>
@@ -152,7 +153,7 @@ a:hover{color:#8B6B1F}
       </div>
       <a data-reveal="" data-delay="160" href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 28px;border-radius:6px;background:#D6A63A;color:#0B0B0D;font-size:15px;font-weight:700;transition:gap .45s cubic-bezier(.2,.7,.2,1),background .3s" style-hover="gap:18px;background:#F2C75C;color:#0B0B0D">Book an Appointment <span aria-hidden="true">→</span></a>
     </div>
-    <ol style="list-style:none;margin:clamp(64px,8vw,112px) 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:56px 32px">
+    <ol class="m-steps" style="list-style:none;margin:clamp(64px,8vw,112px) 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:56px 32px">
       <li style="display:flex;flex-direction:column"><span data-reveal="num" style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(96px,10vw,152px);line-height:.8;color:#D6A63A">01</span><span style="height:1px;background:rgba(214,166,58,.35);margin:32px 0 24px"></span><h3 data-reveal="" data-delay="80" style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:32px;line-height:1.1">Listen First</h3><p data-reveal="" data-delay="140" style="margin:12px 0 0;font-size:15px;line-height:1.7;color:#B4B0A6;max-width:30ch">Every appointment begins with your concerns, your history and what you want from your care.</p></li>
       <li style="display:flex;flex-direction:column"><span data-reveal="num" data-delay="100" style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(96px,10vw,152px);line-height:.8;color:#D6A63A">02</span><span style="height:1px;background:rgba(214,166,58,.35);margin:32px 0 24px"></span><h3 data-reveal="" data-delay="180" style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:32px;line-height:1.1">Explain Clearly</h3><p data-reveal="" data-delay="240" style="margin:12px 0 0;font-size:15px;line-height:1.7;color:#B4B0A6;max-width:30ch">Findings and options are explained in plain language before anything begins.</p></li>
       <li style="display:flex;flex-direction:column"><span data-reveal="num" data-delay="200" style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(96px,10vw,152px);line-height:.8;color:#D6A63A">03</span><span style="height:1px;background:rgba(214,166,58,.35);margin:32px 0 24px"></span><h3 data-reveal="" data-delay="280" style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:32px;line-height:1.1">Treat Precisely</h3><p data-reveal="" data-delay="340" style="margin:12px 0 0;font-size:15px;line-height:1.7;color:#B4B0A6;max-width:30ch">Careful, unhurried treatment that puts your comfort first.</p></li>
@@ -173,7 +174,8 @@ a:hover{color:#8B6B1F}
         <span style="display:flex;flex-direction:column;gap:3px"><span aria-label="5 out of 5 stars" style="font-size:12px;letter-spacing:2px;color:#C4952F">★★★★★</span><span style="font-size:12px;color:#5E5B54">9 reviews on Google ↗</span></span>
       </a>
     </div>
-    <div style="margin-top:clamp(48px,6vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px">
+    <p class="m-swipe-hint" style="display:none;margin:32px 0 -24px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#8B6B1F">Swipe to read more →</p>
+    <div class="m-reviews" style="margin-top:clamp(48px,6vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px">
       <article data-reveal="" style="background:#FFFFFF;border:1px solid #DED9CD;border-radius:6px;padding:clamp(28px,3vw,40px);min-height:340px;display:flex;flex-direction:column;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-4px);box-shadow:0 30px 60px -40px rgba(11,11,13,.3)">
         <div style="display:flex;justify-content:space-between;align-items:flex-start"><span aria-hidden="true" style="font-family:'Cormorant Garamond',serif;font-size:84px;line-height:.7;height:40px;color:#D6A63A">“</span><span aria-label="5 out of 5 stars" style="font-size:13px;letter-spacing:3px;color:#C4952F">★★★★★</span></div>
         <p style="margin:28px 0 0;font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.45;color:#2A2824;font-style:italic">Had a really good experience here! 😊 I got my dental fillings and root canal treatment done, and I’m very happy with the overall experience. The doctor was friendly, patient, and explained everything clearly throughout the treatment. The staff were also very kind and helpful. the hospital is clean, well-maintained, and has a comfortable environment. Highly recommended!</p>

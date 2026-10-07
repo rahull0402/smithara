@@ -8,15 +8,12 @@
 <body>
 <x-dc>
 <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
-  <a href="{{ href }}" onMouseEnter="{{ on }}" onMouseLeave="{{ off }}" onFocus="{{ on }}" onBlur="{{ off }}" style="position:relative;display:grid;grid-template-columns:64px minmax(0,1fr) 176px 200px;align-items:center;gap:32px;padding:{{ pad }} 24px;border-top:1px solid #DED9CD;background:{{ bg }};color:#0B0B0D;outline:none;transition:padding .6s cubic-bezier(.2,.7,.2,1),background .5s">
+  <a href="{{ href }}" onMouseEnter="{{ on }}" onMouseLeave="{{ off }}" onFocus="{{ on }}" onBlur="{{ off }}" style="position:relative;display:grid;grid-template-columns:64px minmax(0,1fr) 200px;align-items:center;gap:32px;padding:{{ pad }} 24px;border-top:1px solid #DED9CD;background:{{ bg }};color:#0B0B0D;outline:none;transition:padding .6s cubic-bezier(.2,.7,.2,1),background .5s">
     <span aria-hidden="true" style="position:absolute;left:0;right:0;top:-1px;height:1px;background:#D6A63A;transform:scaleX({{ lineX }});transform-origin:left;transition:transform .7s cubic-bezier(.2,.7,.2,1)"></span>
     <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;color:#8B6B1F">{{ num }}</span>
     <span style="display:flex;flex-direction:column;gap:8px;transform:translateX({{ shift }});transition:transform .6s cubic-bezier(.2,.7,.2,1)">
       <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:{{ titleSize }};line-height:1.05;letter-spacing:-.005em">{{ title }}</h3>
       <span style="font-family:Manrope,sans-serif;font-size:15px;line-height:1.6;color:#5E5B54;max-width:54ch">{{ desc }}</span>
-    </span>
-    <span aria-hidden="true" style="height:112px;clip-path:{{ clip }};transition:clip-path .75s cubic-bezier(.2,.7,.2,1);pointer-events:none">
-      <dc-import name="Photo" style="display:block;width:100%;height:100%" slot="{{ slot }}" label="{{ imgLabel }}" radius="4px" hint-size="100%,100%"></dc-import>
     </span>
     <span style="display:flex;align-items:center;justify-content:flex-end;gap:{{ gap }};font-family:Manrope,sans-serif;font-size:14px;font-weight:600;transition:gap .5s cubic-bezier(.2,.7,.2,1)">
       {{ cta }}
@@ -34,7 +31,6 @@
     <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
       <div style="padding:0 0 28px 48px;display:flex;flex-direction:column;align-items:flex-start;gap:18px">
         <p style="margin:0;font-family:Manrope,sans-serif;font-size:15px;line-height:1.65;color:#5E5B54">{{ desc }}</p>
-        <div style="width:100%;aspect-ratio:16/10"><dc-import name="Photo" style="display:block;width:100%;height:100%" slot="{{ slot }}" label="{{ imgLabel }}" radius="4px" hint-size="100%,100%"></dc-import></div>
         <a href="{{ href }}" style="display:inline-flex;align-items:center;gap:10px;font-family:Manrope,sans-serif;font-size:14px;font-weight:600;padding-bottom:4px;border-bottom:1px solid #D6A63A;color:#0B0B0D">{{ cta }} <span style="color:#8B6B1F">→</span></a>
       </div>
     </sc-if>
@@ -66,13 +62,11 @@ class Component extends DCLogic {
     return {
       desktop, mobileAccordion: !desktop && (p.accordion ?? true), mobileList: !desktop && !(p.accordion ?? true),
       num: p.num ?? '01', title: p.title ?? 'Treatment', desc: p.desc ?? '',
-      href: `Treatment Detail.dc.html?t=${slug}`, slot: p.slot ?? `treat-${slug}`,
-      imgLabel: `Treatment image · ${p.title ?? ''} · 16:10`,
+      href: `Treatment Detail.dc.html?t=${slug}`,
       cta: p.cta ?? 'Explore treatment',
       titleSize: dense ? 'clamp(28px,2.5vw,38px)' : 'clamp(30px,2.9vw,44px)',
       pad: h ? (dense ? '34px' : '42px') : (dense ? '24px' : '30px'),
       bg: h ? '#FFFFFF' : 'rgba(255,255,255,0)', lineX: h ? 1 : 0, shift: h ? '10px' : '0px',
-      clip: h ? 'inset(0% 0% 0% 0% round 4px)' : 'inset(50% 50% 50% 50% round 4px)',
       gap: h ? '18px' : '12px',
       arrowBorder: h ? '#19191C' : '#DED9CD', arrowBg: h ? '#19191C' : 'transparent', arrowFg: h ? '#D6A63A' : '#0B0B0D',
       on: () => this.setState({ hover: true }), off: () => this.setState({ hover: false }),
