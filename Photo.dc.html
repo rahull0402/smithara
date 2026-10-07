@@ -19,7 +19,7 @@ class Component extends DCLogic {
     return {
       slot: p.slot ?? 'photo',
       label: p.label ?? 'Image',
-      src: p.src || undefined,
+      src: p.src || `assets/placeholders/${p.slot ?? 'photo'}.svg`,
       r: p.radius ?? '6px',
       bg: p.tone === 'dark' ? '#232326' : '#ECE8DF',
     };

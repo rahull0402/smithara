@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+<defs>
+<radialGradient id="g" cx="50%" cy="42%" r="70%"><stop offset="0" stop-color="#F7F3EA"/><stop offset=".6" stop-color="#ECE6D8"/><stop offset="1" stop-color="#DFD6C3"/></radialGradient>
+</defs>
+<rect width="1600" height="1000" fill="url(#g)"/>
+<circle cx="800" cy="470" r="250" fill="none" stroke="#C9973A" stroke-opacity=".18" stroke-width="2"/>
+<circle cx="800" cy="470" r="330" fill="none" stroke="#C9973A" stroke-opacity=".09" stroke-width="2"/>
+<g transform="translate(728 318) scale(1.2)" fill="none" stroke="#C9973A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M60 22c-8-6-20-10-30-4-12 7-12 24-8 38 3 11 6 18 8 32 2 12 5 22 11 22 7 0 7-16 10-26 2-6 4-8 9-8s7 2 9 8c3 10 3 26 10 26 6 0 9-10 11-22 2-14 5-21 8-32 4-14 4-31-8-38-10-6-22-2-30 4z"/></g>
+<text x="800" y="570" text-anchor="middle" font-family="'Cormorant Garamond',Georgia,'Times New Roman',serif" font-style="italic" font-size="46" fill="#2A2824">Cosmetic Dentistry</text>
+<path d="M792 610l8-8 8 8-8 8z" fill="#C9973A"/>
+<text x="800" y="660" text-anchor="middle" font-family="Manrope,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="5" fill="#8A7A5C">SMITHARA DENTAL CARE</text>
+</svg>
