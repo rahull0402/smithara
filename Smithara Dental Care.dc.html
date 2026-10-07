@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Smithara Dental Care · Dentist in Rajarajeshwari Nagar, Bengaluru</title>
+<meta name="description" content="Personalized dental care by Dr. Sushmita Raj at Smithara Dental Care, a dental clinic in Rajarajeshwari Nagar, Bengaluru.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Manrope:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<script src="./image-slot.js"></script>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:#F8F7F3;color:#1C1C1A;font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:#1C1C1A;text-decoration:none}
+a:hover{color:#4F6A56}
+button{font-family:inherit}
+::selection{background:#E8EEE9}
+input,select,textarea{font-family:inherit}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+
+<header style="position:fixed;top:0;left:0;right:0;z-index:50;height:{{ navH }};background:{{ navBg }};border-bottom:1px solid {{ navBorder }};backdrop-filter:{{ navBlur }};-webkit-backdrop-filter:{{ navBlur }};transition:height .5s cubic-bezier(.2,.7,.2,1),background .5s,border-color .5s">
+  <div style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,56px);height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <a href="#home" aria-label="Smithara Dental Care home" style="display:flex;flex-direction:column;line-height:1;color:#1C1C1A">
+      <span style="font-family:'Instrument Serif',serif;font-size:27px;letter-spacing:.01em">Smithara</span>
+      <span style="font-size:9.5px;letter-spacing:.32em;text-transform:uppercase;color:#6F706B;margin-top:5px;font-weight:600">Dental Care</span>
+    </a>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav aria-label="Primary" style="display:flex;align-items:center;gap:30px">
+        <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="6">
+          <a href="{{ n.href }}" style="position:relative;font-size:14px;font-weight:500;color:{{ n.color }};padding:6px 0;background-image:linear-gradient(#1C1C1A,#1C1C1A);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1px;transition:background-size .45s cubic-bezier(.2,.7,.2,1),color .3s" style-hover="background-size:100% 1px;color:#1C1C1A">
+            {{ n.label }}
+            <span aria-hidden="true" style="position:absolute;left:50%;bottom:-9px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:#6E8B74;opacity:{{ n.dot }};transition:opacity .4s"></span>
+          </a>
+        </sc-for>
+      </nav>
+      <div style="display:flex;align-items:center;gap:22px">
+        <sc-if value="{{ isWide }}" hint-placeholder-val="{{ true }}">
+          <a href="tel:+910000000000" style="font-size:14px;font-weight:500;display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#6E8B74"></span>+91 XXXXX XXXXX</a>
+        </sc-if>
+        <button onClick="{{ openBooking }}" style="display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 22px;border-radius:999px;border:0;background:#5B7861;color:#FFFFFF;font-size:14px;font-weight:600;cursor:pointer;transition:gap .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1),background .3s" style-hover="gap:15px;transform:scale(1.015);background:#4F6A56">Book Appointment <span aria-hidden="true">→</span></button>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:center;gap:8px">
+        <button onClick="{{ openBooking }}" style="height:40px;padding:0 16px;border-radius:999px;border:0;background:#5B7861;color:#FFFFFF;font-size:13px;font-weight:600;cursor:pointer">Book</button>
+        <button onClick="{{ toggleMenu }}" aria-label="Open menu" aria-expanded="{{ menuOpen }}" style="width:44px;height:44px;border-radius:50%;border:1px solid #E5E4DE;background:#FFFFFF;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer">
+          <span style="width:16px;height:1.5px;background:#1C1C1A"></span>
+          <span style="width:16px;height:1.5px;background:#1C1C1A"></span>
+        </button>
+      </div>
+    </sc-if>
+  </div>
+</header>
+
+<div role="dialog" aria-label="Menu" style="position:fixed;inset:0;z-index:60;background:#F8F7F3;opacity:{{ menuOp }};visibility:{{ menuVis }};transition:opacity .5s cubic-bezier(.2,.7,.2,1),visibility .5s;display:flex;flex-direction:column;padding:20px clamp(20px,5vw,56px) 32px">
+  <div style="display:flex;justify-content:space-between;align-items:center;height:44px">
+    <span style="font-family:'Instrument Serif',serif;font-size:27px">Smithara</span>
+    <button onClick="{{ toggleMenu }}" aria-label="Close menu" style="width:44px;height:44px;border-radius:50%;border:1px solid #E5E4DE;background:#FFFFFF;font-size:20px;line-height:1;cursor:pointer;color:#1C1C1A">×</button>
+  </div>
+  <nav aria-label="Mobile" style="display:flex;flex-direction:column;margin-top:48px;transform:translateY({{ menuY }});transition:transform .6s cubic-bezier(.2,.7,.2,1)">
+    <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="6">
+      <a href="{{ n.href }}" onClick="{{ closeMenu }}" style="display:flex;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid #E5E4DE;font-family:'Instrument Serif',serif;font-size:40px;line-height:1.1;color:#1C1C1A">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#4F6A56">{{ n.num }}</span>{{ n.label }}
+      </a>
+    </sc-for>
+  </nav>
+  <div style="margin-top:auto;display:flex;flex-direction:column;gap:12px">
+    <button onClick="{{ openBooking }}" style="height:56px;border-radius:999px;border:0;background:#5B7861;color:#FFFFFF;font-size:16px;font-weight:600;cursor:pointer">Book an Appointment →</button>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <a href="tel:+910000000000" style="height:52px;border-radius:999px;border:1px solid #CFCEC6;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600">Call</a>
+      <a href="https://wa.me/910000000000" style="height:52px;border-radius:999px;border:1px solid #CFCEC6;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600">WhatsApp</a>
+    </div>
+    <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:#6F706B">Kenchenhalli, Rajarajeshwari Nagar, Bengaluru 560098</p>
+  </div>
+</div>
+
+<main>
+<section id="home" data-nav="home" aria-label="Introduction" style="padding:clamp(112px,13vw,160px) 0 clamp(64px,8vw,112px)">
+  <div style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:clamp(48px,6vw,104px);align-items:end">
+    <div style="padding-bottom:clamp(0px,2vw,24px)">
+      <p data-hero="1" style="margin:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#4F6A56;font-weight:600;display:flex;align-items:center;gap:14px"><span style="width:28px;height:1px;background:#6E8B74"></span>Personalized dental care · Bengaluru</p>
+      <h1 style="margin:28px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(54px,7.4vw,112px);line-height:.98;letter-spacing:-.015em">
+        <span style="display:block;overflow:hidden;padding-bottom:.08em"><span data-hero="2" data-line="" style="display:block">Healthy smiles,</span></span>
+        <span style="display:block;overflow:hidden;padding-bottom:.08em"><span data-hero="3" data-line="" style="display:block;font-style:italic;color:#4F6A56">thoughtfully cared for.</span></span>
+      </h1>
+      <p data-hero="4" style="margin:30px 0 0;font-size:clamp(17px,1.35vw,19px);line-height:1.7;color:#6F706B;max-width:44ch;text-wrap:pretty">Personalized dental care by {{ dr }}, focused on comfort, clarity and treatment designed around you.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:40px">
+        <button data-hero="5" onClick="{{ openBooking }}" style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 28px;border-radius:999px;border:0;background:#5B7861;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer;transition:gap .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1),background .3s" style-hover="gap:16px;transform:scale(1.015);background:#4F6A56">Book an Appointment <span aria-hidden="true">→</span></button>
+        <a data-hero="6" href="#treatments" style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 28px;border-radius:999px;border:1px solid #CFCEC6;color:#1C1C1A;font-size:15px;font-weight:600;transition:border-color .3s,transform .45s cubic-bezier(.2,.7,.2,1),gap .45s cubic-bezier(.2,.7,.2,1)" style-hover="border-color:#1C1C1A;transform:scale(1.015);gap:16px;color:#1C1C1A">Explore Treatments <span aria-hidden="true">↓</span></a>
+      </div>
+      <div data-hero="7" style="display:flex;flex-wrap:wrap;gap:12px 32px;margin-top:56px;padding-top:20px;border-top:1px solid #E5E4DE;font-size:13px;color:#6F706B">
+        <span>Dentist in Rajarajeshwari Nagar</span>
+        <span>Kenchenhalli, Bengaluru 560098</span>
+      </div>
+    </div>
+    <div style="position:relative">
+      <div data-hero-img="" style="position:relative;aspect-ratio:4/5;border-radius:4px;overflow:hidden;background:#ECEAE3">
+        <image-slot id="hero-portrait" shape="rect" placeholder="Portrait of the doctor in the clinic"></image-slot>
+      </div>
+      <div data-hero="9" style="position:absolute;left:max(-56px, calc(16px - 4.5vw));bottom:clamp(20px,4vw,48px);background:#FFFFFF;padding:22px 26px 20px;border:1px solid #E5E4DE;box-shadow:0 24px 60px -28px rgba(28,28,26,.22);pointer-events:none;max-width:calc(100% - 32px)">
+        <div style="font-family:'Instrument Serif',serif;font-size:26px;line-height:1.1">{{ dr }}</div>
+        <div style="font-size:13px;color:#6F706B;margin-top:4px">Dentist</div>
+        <div style="height:1px;background:#E5E4DE;margin:16px 0 12px"></div>
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#4F6A56;font-weight:600">Personalized • Gentle • Modern Care</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Our approach" style="background:#FFFFFF;border-top:1px solid #E5E4DE;border-bottom:1px solid #E5E4DE">
+  <div style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,56px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:1px;background:#E5E4DE">
+      <a href="#reviews" data-reveal="" style="background:#FFFFFF;padding:32px 28px;display:flex;flex-direction:column;gap:8px;color:#1C1C1A">
+        <div style="display:flex;align-items:baseline;gap:10px"><span data-count="5.0" style="font-family:'Instrument Serif',serif;font-size:44px;line-height:1">5.0</span><span aria-label="5 out of 5 stars" style="font-size:13px;letter-spacing:2px">★★★★★</span></div>
+        <span style="font-size:13px;color:#6F706B">Google rating · <span data-count="9">9</span> reviews</span>
+      </a>
+      <div data-reveal="" data-delay="80" style="background:#FFFFFF;padding:32px 28px;display:flex;flex-direction:column;justify-content:space-between;gap:20px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#4F6A56">01</span><span style="font-size:16px;font-weight:500">Personalized Care</span></div>
+      <div data-reveal="" data-delay="160" style="background:#FFFFFF;padding:32px 28px;display:flex;flex-direction:column;justify-content:space-between;gap:20px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#4F6A56">02</span><span style="font-size:16px;font-weight:500">Modern Dentistry</span></div>
+      <div data-reveal="" data-delay="240" style="background:#FFFFFF;padding:32px 28px;display:flex;flex-direction:column;justify-content:space-between;gap:20px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#4F6A56">03</span><span style="font-size:16px;font-weight:500">Patient-First Approach</span></div>
+      <div data-reveal="" data-delay="320" style="background:#FFFFFF;padding:32px 28px;display:flex;flex-direction:column;justify-content:space-between;gap:20px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#4F6A56">04</span><span style="font-size:16px;font-weight:500">Comfort-Focused Experience</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about" data-nav="about" style="padding:clamp(96px,12vw,176px) 0">
+  <div style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(48px,7vw,120px);align-items:center">
+    <div>
+      <p data-reveal="" style="margin:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#4F6A56;font-weight:600;display:flex;align-items:center;gap:14px"><span style="width:28px;height:1px;background:#6E8B74"></span>About Smithara</p>
+      <h2 data-reveal="" data-delay="80" style="margin:28px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(42px,5.4vw,78px);line-height:1.02;letter-spacing:-.01em;text-wrap:balance">Dentistry built around people, <span style="font-style:italic;color:#4F6A56">not procedures.</span></h2>
+      <div data-reveal="" data-delay="160" style="margin-top:36px;display:flex;flex-direction:column;gap:18px;max-width:48ch">
+        <p style="margin:0;font-size:17px;line-height:1.75;color:#6F706B;text-wrap:pretty">Every visit at Smithara Dental Care begins with a conversation. We take the time to listen to what brings you in and what concerns you, before any treatment is discussed.</p>
+        <p style="margin:0;font-size:17px;line-height:1.75;color:#6F706B;text-wrap:pretty">Your options are explained clearly, in plain language, so you can decide with confidence. Care is planned around your comfort today and your oral health for years to come.</p>
+      </div>
+      <a data-reveal="" data-delay="240" href="#doctor" style="display:inline-flex;align-items:center;gap:10px;margin-top:40px;font-size:15px;font-weight:600;padding-bottom:4px;border-bottom:1px solid #1C1C1A;transition:gap .45s cubic-bezier(.2,.7,.2,1)" style-hover="gap:16px">Meet the doctor <span aria-hidden="true">→</span></a>
+    </div>
+    <div data-reveal="clip" style="position:relative;aspect-ratio:5/6;border-radius:4px;overflow:hidden;background:#ECEAE3">
+      <image-slot id="about-clinic" shape="rect" placeholder="Clinic interior — reception or treatment room"></image-slot>
+    </div>
+  </div>
+</section>
+
+<section id="doctor" data-nav="about" style="background:#FFFFFF;padding:clamp(96px,12vw,176px) 0;border-top:1px solid #E5E4DE">
+  <div style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(48px,7vw,120px);align-items:start">
+    <div data-reveal="clip" style="position:relative;aspect-ratio:4/5;border-radius:4px;overflow:hidden;background:#ECEAE3">
+      <image-slot id="doctor-portrait" shape="rect" placeholder="Professional portrait of the doctor"></image-slot>
+    </div>
+    <div style="padding-top:clamp(0px,3vw,48px)">
+      <p data-reveal="" style="margin:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#4F6A56;font-weight:600;display:flex;align-items:center;gap:14px"><span style="width:28px;height:1px;background:#6E8B74"></span>The doctor</p>
+      <h2 data-reveal="" data-delay="80" style="margin:28px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(42px,5.4vw,78px);line-height:1.02;letter-spacing:-.01em">Meet <span style="font-style:italic">{{ dr }}</span></h2>
+      <p data-reveal="" data-delay="140" style="margin:16px 0 0;font-size:16px;color:#6F706B">Dentist · Smithara Dental Care, Rajarajeshwari Nagar</p>
+      <dl data-reveal="" data-delay="200" style="margin:44px 0 0;border-bottom:1px solid #E5E4DE">
+        <div style="display:grid;grid-template-columns:minmax(120px,170px) 1fr;gap:16px;padding:20px 0;border-top:1px solid #E5E4DE">
+          <dt style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6F706B;font-weight:600;padding-top:3px">Qualifications</dt>
+          <dd style="margin:0;display:flex;flex-direction:column;align-items:flex-start;gap:8px"><span style="font-size:16px;color:#8E8F89;font-style:italic">To be provided by the clinic</span><sc-if value="{{ notes }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.4;color:#7A5F2E;background:#F4EEDC;border:1px dashed #D8C79C;padding:4px 8px;border-radius:3px">CLIENT INPUT · degrees &amp; registration</span></sc-if></dd>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(120px,170px) 1fr;gap:16px;padding:20px 0;border-top:1px solid #E5E4DE">
+          <dt style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6F706B;font-weight:600;padding-top:3px">Experience</dt>
+          <dd style="margin:0;display:flex;flex-direction:column;align-items:flex-start;gap:8px"><span style="font-size:16px;color:#8E8F89;font-style:italic">To be provided by the clinic</span><sc-if value="{{ notes }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.4;color:#7A5F2E;background:#F4EEDC;border:1px dashed #D8C79C;padding:4px 8px;border-radius:3px">CLIENT INPUT · verified years / prior practice</span></sc-if></dd>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(120px,170px) 1fr;gap:16px;padding:20px 0;border-top:1px solid #E5E4DE">
+          <dt style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6F706B;font-weight:600;padding-top:3px">Areas of focus</dt>
+          <dd style="margin:0;display:flex;flex-direction:column;align-items:flex-start;gap:8px"><span style="font-size:16px;color:#8E8F89;font-style:italic">To be provided by the clinic</span><sc-if value="{{ notes }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.4;color:#7A5F2E;background:#F4EEDC;border:1px dashed #D8C79C;padding:4px 8px;border-radius:3px">CLIENT INPUT · verified areas of expertise</span></sc-if></dd>
+        </div>
+      </dl>
+      <figure data-reveal="" data-delay="260" style="margin:48px 0 0">
+        <blockquote style="margin:0;font-family:'Instrument Serif',serif;font-size:clamp(26px,2.4vw,34px);line-height:1.25;text-wrap:pretty">“I want every patient to leave understanding their teeth a little better, and feeling that their care was planned around them.”</blockquote>
+        <figcaption style="margin-top:16px;display:flex;flex-wrap:wrap;align-items:center;gap:12px;font-size:14px;color:#6F706B">{{ dr }} on her approach<sc-if value="{{ notes }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.4;color:#7A5F2E;background:#F4EEDC;border:1px dashed #D8C79C;padding:4px 8px;border-radius:3px">DRAFT · for the doctor to review</span></sc-if></figcaption>
+      </figure>
+      <div data-reveal="" data-delay="320" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:44px">
+        <button onClick="{{ openBooking }}" style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 28px;border-radius:999px;border:0;background:#5B7861;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer;transition:gap .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1),background .3s" style-hover="gap:16px;transform:scale(1.015);background:#4F6A56">Book an Appointment <span aria-hidden="true">→</span></button>
+        <a href="tel:+910000000000" style="display:inline-flex;align-items:center;height:56px;padding:0 28px;border-radius:999px;border:1px solid #CFCEC6;font-size:15px;font-weight:600;transition:border-color .3s,transform .45s cubic-bezier(.2,.7,.2,1)" style-hover="border-color:#1C1C1A;transform:scale(1.015);color:#1C1C1A">Call the Clinic</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="treatments" data-nav="treatments" style="padding:clamp(96px,12vw,176px) 0">
+  <div style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,56px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:32px clamp(48px,7vw,120px);align-items:end">
+      <div>
+        <p data-reveal="" style="margin:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#4F6A56;font-weight:600;display:flex;align-items:center;gap:14px"><span style="width:28px;height:1px;background:#6E8B74"></span>Treatments</p>
+        <h2 data-reveal="" data-delay="80" style="margin:28px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(42px,5.4vw,78px);line-height:1.02;letter-spacing:-.01em;text-wrap:balance">Comprehensive <span style="font-style:italic;color:#4F6A56">dental care</span></h2>
+      </div>
+      <div data-reveal="" data-delay="160" style="display:flex;flex-direction:column;align-items:flex-start;gap:16px">
+        <p style="margin:0;font-size:17px;line-height:1.75;color:#6F706B;max-width:46ch;text-wrap:pretty">From preventive care to restorative and aesthetic treatments, every treatment plan is tailored to your individual needs.</p>
+        <sc-if value="{{ notes }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.4;color:#7A5F2E;background:#F4EEDC;border:1px dashed #D8C79C;padding:4px 8px;border-radius:3px">CLIENT INPUT · confirm which treatments are offered</span></sc-if>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(56px,7vw,96px);border-bottom:1px solid #E5E4DE">
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+        <sc-for list="{{ treatments }}" as="t" hint-placeholder-count="10">
+          <div role="button" tabIndex="0" aria-label="{{ t.aria }}" onMouseEnter="{{ t.enter }}" onFocus="{{ t.enter }}" onMouseLeave="{{ leaveT }}" onBlur="{{ leaveT }}" onClick="{{ t.book }}" onKeyDown="{{ t.key }}" style="display:grid;grid-template-columns:64px minmax(0,1.05fr) minmax(0,1fr) 132px 46px;align-items:center;gap:32px;padding:{{ t.pad }} 20px;border-top:1px solid #E5E4DE;background:{{ t.bg }};transition:padding .6s cubic-bezier(.2,.7,.2,1),background .5s;cursor:pointer;outline:none">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#4F6A56">{{ t.num }}</span>
+            <h3 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(28px,2.6vw,38px);line-height:1.1;transform:translateX({{ t.shift }});transition:transform .6s cubic-bezier(.2,.7,.2,1)">{{ t.title }}</h3>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:#6F706B;opacity:{{ t.descOp }};transform:translateY({{ t.descY }});transition:opacity .5s,transform .6s cubic-bezier(.2,.7,.2,1);text-wrap:pretty">{{ t.desc }}</p>
+            <div aria-hidden="true" style="height:88px;clip-path:{{ t.imgClip }};transition:clip-path .7s cubic-bezier(.2,.7,.2,1);background-color:#EAE9E2;background-image:repeating-linear-gradient(135deg,rgba(28,28,26,.06) 0 1px,transparent 1px 9px);display:flex;align-items:flex-end;padding:8px;font-family:'JetBrains Mono',monospace;font-size:9px;color:#8B8C86;letter-spacing:.06em;text-transform:uppercase">treatment image</div>
+            <span aria-hidden="true" style="width:46px;height:46px;border-radius:50%;border:1px solid {{ t.arrowBorder }};background:{{ t.arrowBg }};color:{{ t.arrowColor }};display:flex;align-items:center;justify-content:center;font-size:17px;transform:translateX({{ t.arrowX }});transition:all .5s cubic-bezier(.2,.7,.2,1)">→</span>
+          </div>
+        </sc-for>
+      </sc-if>
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+        <sc-for list="{{ treatments }}" as="t" hint-placeholder-count="10">
+          <div style="border-top:1px solid #E5E4DE">
+            <button onClick="{{ t.toggle }}" aria-expanded="{{ t.open }}" style="width:100%;display:grid;grid-template-columns:36px 1fr 32px;align-items:center;gap:12px;padding:22px 0;background:none;border:0;text-align:left;cursor:pointer;color:#1C1C1A">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#4F6A56">{{ t.num }}</span>
+              <h3 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:27px;line-height:1.15">{{ t.title }}</h3>
+              <span aria-hidden="true" style="width:32px;height:32px;border-radius:50%;border:1px solid #CFCEC6;display:flex;align-items:center;justify-content:center;font-size:16px">{{ t.sign }}</span>
+            </button>
+            <sc-if value="{{ t.open }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:0 0 28px 48px;display:flex;flex-direction:column;align-items:flex-start;gap:18px">
+                <p style="margin:0;font-size:15px;line-height:1.65;color:#6F706B">{{ t.desc }}</p>
+                <div aria-hidden="true" style="width:100%;height:150px;background-color:#EAE9E2;background-image:repeating-linear-gradient(135deg,rgba(28,28,26,.06) 0 1px,transparent 1px 9px);display:flex;align-items:flex-end;padding:10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#8B8C86;letter-spacing:.06em;text-transform:uppercase">treatment image</div>
+                <button onClick="{{ t.book }}" style="background:none;border:0;padding:0 0 4px;border-bottom:1px solid #1C1C1A;font-size:14px;font-weight:600;color:#1C1C1A;cursor:pointer">Book for this treatment →</button>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </sc-if>
+    </div>
+
+    <div data-reveal="" style="margin-top:48px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px">
+      <p style="margin:0;font-family:'Instrument Serif',serif;font-size:clamp(24px,2.2vw,30px);line-height:1.2">Not sure what you need? <span style="font-style:italic;color:#6F706B">Start with a consultation.</span></p>
+      <button onClick="{{ openBooking }}" style="display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 26px;border-radius:999px;border:0;background:#5B7861;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer;transition:gap .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1),background .3s" style-hover="gap:16px;transform:scale(1.015);background:#4F6A56">Book a Consultation <span aria-hidden="true">→</span></button>
+    </div>
+  </div>
+</section>
+
+<section id="experience" data-nav="why" style="background:#E8EEE9;padding:clamp(96px,12vw,176px) 0">
+  <div style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,56px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px clamp(48px,7vw,120px);align-items:end">
+      <div>
+        <p data-reveal="" style="margin:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#4F6A56;font-weight:600;display:flex;align-items:center;gap:14px"><span style="width:28px;height:1px;background:#6E8B74"></span>The clinic experience</p>
+        <h2 data-reveal="" data-delay="80" style="margin:28px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(42px,5.4vw,78px);line-height:1.02;letter-spacing:-.01em;text-wrap:balance">A calmer way to experience <span style="font-style:italic;color:#4F6A56">dental care.</span></h2>
+      </div>
+    </div>
+    <div data-reveal="img" style="position:relative;margin-top:clamp(48px,6vw,80px);aspect-ratio:16/7;min-height:280px;overflow:hidden;border-radius:4px;background:#DCE3DD">
+      <div data-parallax="0.08" style="position:absolute;left:0;right:0;top:-10%;height:120%">
+        <image-slot id="clinic-wide" shape="rect" placeholder="Wide clinic photograph — calm treatment room"></image-slot>
+      </div>
+    </div>
+    <div style="margin-top:clamp(48px,6vw,80px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:40px 32px">
+      <div data-reveal="" style="border-top:1px solid #C5D0C7;padding-top:24px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#4F6A56">01</span><h3 style="margin:20px 0 12px;font-family:'Instrument Serif',serif;font-weight:400;font-size:30px;line-height:1.1">Comfort First</h3><p style="margin:0;font-size:15px;line-height:1.65;color:#5C605A">A welcoming environment designed to make every visit easier.</p></div>
+      <div data-reveal="" data-delay="100" style="border-top:1px solid #C5D0C7;padding-top:24px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#4F6A56">02</span><h3 style="margin:20px 0 12px;font-family:'Instrument Serif',serif;font-weight:400;font-size:30px;line-height:1.1">Clear Explanations</h3><p style="margin:0;font-size:15px;line-height:1.65;color:#5C605A">Understand your treatment and options before you begin.</p></div>
+      <div data-reveal="" data-delay="200" style="border-top:1px solid #C5D0C7;padding-top:24px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#4F6A56">03</span><h3 style="margin:20px 0 12px;font-family:'Instrument Serif',serif;font-weight:400;font-size:30px;line-height:1.1">Personalized Care</h3><p style="margin:0;font-size:15px;line-height:1.65;color:#5C605A">Treatment recommendations built around your individual needs.</p></div>
+      <div data-reveal="" data-delay="300" style="border-top:1px solid #C5D0C7;padding-top:24px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#4F6A56">04</span><h3 style="margin:20px 0 12px;font-family:'Instrument Serif',serif;font-weight:400;font-size:30px;line-height:1.1">Modern Dentistry</h3><p style="margin:0;font-size:15px;line-height:1.65;color:#5C605A">Contemporary techniques and technology for precise, comfortable care.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="why" data-nav="why" style="padding:clamp(96px,12vw,176px) 0">
+  <div style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:48px clamp(48px,7vw,120px)">
+    <div style="align-self:start;position:sticky;top:120px">
+      <p data-reveal="" style="margin:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#4F6A56;font-weight:600;display:flex;align-items:center;gap:14px"><span style="width:28px;height:1px;background:#6E8B74"></span>Why choose us</p>
+      <h2 data-reveal="" data-delay="80" style="margin:28px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(42px,5.4vw,78px);line-height:1.02;letter-spacing:-.01em;text-wrap:balance">Dentistry that <span style="font-style:italic;color:#4F6A56">puts you first.</span></h2>
+      <p data-reveal="" data-delay="160" style="margin:28px 0 0;font-size:17px;line-height:1.75;color:#6F706B;max-width:40ch">Four commitments that shape every appointment, from your first visit to your follow-up.</p>
+      <button data-reveal="" data-delay="220" onClick="{{ openBooking }}" style="margin-top:36px;display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 26px;border-radius:999px;border:0;background:#5B7861;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer;transition:gap .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1),background .3s" style-hover="gap:16px;transform:scale(1.015);background:#4F6A56">Book an Appointment <span aria-hidden="true">→</span></button>
+    </div>
+    <ol style="list-style:none;margin:0;padding:0;border-bottom:1px solid #E5E4DE">
+      <li data-reveal="" style="display:grid;grid-template-columns:clamp(84px,10vw,150px) 1fr;gap:24px;padding:clamp(32px,4vw,52px) 0;border-top:1px solid #E5E4DE">
+        <span style="font-family:'Instrument Serif',serif;font-size:clamp(64px,7vw,108px);line-height:.85;color:#6E8B74">01</span>
+        <div><h3 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(30px,3vw,42px);line-height:1.1">Listen First</h3><p style="margin:14px 0 0;font-size:16px;line-height:1.7;color:#6F706B;max-width:42ch">Every appointment starts with your concerns, your dental history and what you want from your care.</p></div>
+      </li>
+      <li data-reveal="" style="display:grid;grid-template-columns:clamp(84px,10vw,150px) 1fr;gap:24px;padding:clamp(32px,4vw,52px) 0;border-top:1px solid #E5E4DE">
+        <span style="font-family:'Instrument Serif',serif;font-size:clamp(64px,7vw,108px);line-height:.85;color:#6E8B74">02</span>
+        <div><h3 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(30px,3vw,42px);line-height:1.1">Explain Clearly</h3><p style="margin:14px 0 0;font-size:16px;line-height:1.7;color:#6F706B;max-width:42ch">Findings and options are explained in plain language, so you know what to expect before anything begins.</p></div>
+      </li>
+      <li data-reveal="" style="display:grid;grid-template-columns:clamp(84px,10vw,150px) 1fr;gap:24px;padding:clamp(32px,4vw,52px) 0;border-top:1px solid #E5E4DE">
+        <span style="font-family:'Instrument Serif',serif;font-size:clamp(64px,7vw,108px);line-height:.85;color:#6E8B74">03</span>
+        <div><h3 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(30px,3vw,42px);line-height:1.1">Treat Precisely</h3><p style="margin:14px 0 0;font-size:16px;line-height:1.7;color:#6F706B;max-width:42ch">Careful, unhurried treatment that puts your comfort first and preserves natural teeth wherever possible.</p></div>
+      </li>
+      <li data-reveal="" style="display:grid;grid-template-columns:clamp(84px,10vw,150px) 1fr;gap:24px;padding:clamp(32px,4vw,52px) 0;border-top:1px solid #E5E4DE">
+        <span style="font-family:'Instrument Serif',serif;font-size:clamp(64px,7vw,108px);line-height:.85;color:#6E8B74">04</span>
+        <div><h3 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(30px,3vw,42px);line-height:1.1">Follow Up Thoughtfully</h3><p style="margin:14px 0 0;font-size:16px;line-height:1.7;color:#6F706B;max-width:42ch">Clear aftercare guidance and a check-in after treatment, so you are never left with unanswered questions.</p></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="reviews" data-nav="reviews" style="background:#FFFFFF;padding:clamp(96px,12vw,176px) 0;border-top:1px solid #E5E4DE;overflow:hidden">
+  <div style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,56px);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px">
+    <div>
+      <p data-reveal="" style="margin:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#4F6A56;font-weight:600;display:flex;align-items:center;gap:14px"><span style="width:28px;height:1px;background:#6E8B74"></span>Patient reviews</p>
+      <h2 data-reveal="" data-delay="80" style="margin:28px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(42px,5.4vw,78px);line-height:1.02;letter-spacing:-.01em">In our patients’ <span style="font-style:italic;color:#4F6A56">words.</span></h2>
+    </div>
+    <div data-reveal="" data-delay="160" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+      <a href="https://maps.app.goo.gl/Dq4h7Skoro9VBBkw8" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:16px;padding:14px 20px;border:1px solid #E5E4DE;border-radius:4px;color:#1C1C1A">
+        <span style="font-family:'Instrument Serif',serif;font-size:38px;line-height:1">5.0</span>
+        <span style="display:flex;flex-direction:column;gap:3px"><span aria-label="5 out of 5 stars" style="font-size:12px;letter-spacing:2px">★★★★★</span><span style="font-size:12px;color:#6F706B">9 reviews on Google</span></span>
+      </a>
+      <div style="display:flex;gap:8px">
+        <button onClick="{{ prev }}" aria-label="Previous review" style="width:52px;height:52px;border-radius:50%;border:1px solid #CFCEC6;background:#FFFFFF;font-size:18px;cursor:pointer;color:#1C1C1A;transition:all .3s" style-hover="border-color:#1C1C1A;transform:translateX(-2px)">←</button>
+        <button onClick="{{ next }}" aria-label="Next review" style="width:52px;height:52px;border-radius:50%;border:1px solid #1C1C1A;background:#1C1C1A;font-size:18px;cursor:pointer;color:#FFFFFF;transition:all .3s" style-hover="transform:translateX(2px)">→</button>
+      </div>
+    </div>
+  </div>
+  <sc-if value="{{ notes }}" hint-placeholder-val="{{ true }}">
+    <div style="max-width:1320px;margin:24px auto 0;padding:0 clamp(20px,5vw,56px)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.4;color:#7A5F2E;background:#F4EEDC;border:1px dashed #D8C79C;padding:4px 8px;border-radius:3px;display:inline-block">CLIENT INPUT · paste verified Google reviews only · rating &amp; count should come from a live feed</span></div>
+  </sc-if>
+  <div ref="{{ trackRef }}" role="region" aria-label="Patient reviews" tabIndex="0" style="margin-top:clamp(40px,5vw,64px);display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 clamp(20px,5vw,56px) 8px max(clamp(20px,5vw,56px), calc((100% - 1320px) / 2 + clamp(20px,5vw,56px)));scroll-padding-left:max(clamp(20px,5vw,56px), calc((100% - 1320px) / 2 + clamp(20px,5vw,56px)));cursor:grab;outline:none">
+    <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="4">
+      <article data-card="" style="flex:0 0 min(440px,84vw);scroll-snap-align:start;background:#F8F7F3;padding:clamp(28px,3vw,40px);min-height:380px;display:flex;flex-direction:column;border-radius:4px">
+        <span aria-hidden="true" style="font-family:'Instrument Serif',serif;font-size:96px;line-height:.6;height:44px;color:#6E8B74">“</span>
+        <span aria-label="5 out of 5 stars" style="font-size:13px;letter-spacing:3px;margin-top:20px">★★★★★</span>
+        <p style="margin:20px 0 0;font-family:'Instrument Serif',serif;font-size:clamp(22px,1.9vw,26px);line-height:1.3;color:#8E8F89;font-style:italic">{{ r.text }}</p>
+        <div style="margin-top:auto;padding-top:28px;border-top:1px solid #E5E4DE;display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <span style="font-size:15px;font-weight:600">{{ r.name }}</span>
+          <span style="font-size:12px;color:#6F706B;letter-spacing:.04em">Google Review</span>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+<section id="contact" data-nav="contact" style="padding:clamp(96px,12vw,176px) 0">
+  <div style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:56px clamp(48px,7vw,120px);align-items:stretch">
+    <div>
+      <p data-reveal="" style="margin:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#4F6A56;font-weight:600;display:flex;align-items:center;gap:14px"><span style="width:28px;height:1px;background:#6E8B74"></span>Location</p>
+      <h2 data-reveal="" data-delay="80" style="margin:28px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(42px,5.4vw,78px);line-height:1.02;letter-spacing:-.01em;text-wrap:balance">Visit Smithara <span style="font-style:italic;color:#4F6A56">Dental Care</span></h2>
+      <div data-reveal="" data-delay="160" style="margin-top:44px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px">
+        <div>
+          <div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6F706B;font-weight:600">Address</div>
+          <address style="margin-top:12px;font-style:normal;font-size:16px;line-height:1.7">Sri Shivaratnapuri Temple of Health<br>Ideal Homes Layout, Kenchenhalli<br>Rajarajeshwari Nagar<br>Bengaluru, Karnataka 560098</address>
+        </div>
+        <div>
+          <div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6F706B;font-weight:600">Clinic hours</div>
+          <div style="margin-top:12px;display:flex;flex-direction:column;gap:6px;font-size:16px;line-height:1.6">
+            <div style="display:flex;justify-content:space-between;gap:16px"><span>Mon – Sat</span><span style="color:#8E8F89;font-style:italic">To be confirmed</span></div>
+            <div style="display:flex;justify-content:space-between;gap:16px"><span>Sunday</span><span style="color:#8E8F89;font-style:italic">To be confirmed</span></div>
+          </div>
+          <sc-if value="{{ notes }}" hint-placeholder-val="{{ true }}"><span style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.4;color:#7A5F2E;background:#F4EEDC;border:1px dashed #D8C79C;padding:4px 8px;border-radius:3px;display:inline-block">CLIENT INPUT · verified timings</span></sc-if>
+        </div>
+      </div>
+      <div data-reveal="" data-delay="240" style="margin-top:44px;display:flex;flex-wrap:wrap;gap:10px">
+        <button onClick="{{ openBooking }}" style="display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 24px;border-radius:999px;border:0;background:#5B7861;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer;transition:gap .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1),background .3s" style-hover="gap:16px;transform:scale(1.015);background:#4F6A56">Book Appointment <span aria-hidden="true">→</span></button>
+        <a href="https://maps.app.goo.gl/Dq4h7Skoro9VBBkw8" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:52px;padding:0 22px;border-radius:999px;border:1px solid #1C1C1A;font-size:15px;font-weight:600;transition:transform .45s cubic-bezier(.2,.7,.2,1),gap .45s" style-hover="transform:scale(1.015);gap:12px;color:#1C1C1A">Get Directions <span aria-hidden="true">↗</span></a>
+        <a href="tel:+910000000000" style="display:inline-flex;align-items:center;height:52px;padding:0 22px;border-radius:999px;border:1px solid #CFCEC6;font-size:15px;font-weight:600;transition:border-color .3s,transform .45s" style-hover="border-color:#1C1C1A;transform:scale(1.015);color:#1C1C1A">Call</a>
+        <a href="https://wa.me/910000000000" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;height:52px;padding:0 22px;border-radius:999px;border:1px solid #CFCEC6;font-size:15px;font-weight:600;transition:border-color .3s,transform .45s" style-hover="border-color:#1C1C1A;transform:scale(1.015);color:#1C1C1A">WhatsApp</a>
+      </div>
+    </div>
+    <div data-reveal="img" style="position:relative;min-height:440px;border-radius:4px;overflow:hidden;background:#ECEAE3;border:1px solid #E5E4DE">
+      <iframe title="Map showing Smithara Dental Care, Rajarajeshwari Nagar" src="https://www.google.com/maps?q=Sri+Shivaratnapuri+Temple+of+Health,+Ideal+Homes+Layout,+Kenchenhalli,+Rajarajeshwari+Nagar,+Bengaluru+560098&amp;output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" style="position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(1) contrast(.92) brightness(1.03)"></iframe>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Book an appointment" style="position:relative;overflow:hidden;background:#1C1C1A;color:#F8F7F3;padding:clamp(104px,13vw,200px) 0 clamp(120px,15vw,220px)">
+  <div aria-hidden="true" style="position:absolute;left:50%;bottom:-.24em;transform:translateX(-50%);font-family:'Instrument Serif',serif;font-size:27vw;line-height:1;white-space:nowrap;color:#262624;pointer-events:none;user-select:none">Smithara</div>
+  <div style="position:relative;max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,56px)">
+    <p data-reveal="" style="margin:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#A9BDAD;font-weight:600;display:flex;align-items:center;gap:14px"><span style="width:28px;height:1px;background:#A9BDAD"></span>Appointments</p>
+    <h2 data-reveal="" data-delay="80" style="margin:32px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(50px,7.4vw,112px);line-height:.98;letter-spacing:-.015em;max-width:12ch">Your smile deserves <span style="font-style:italic;color:#A9BDAD">thoughtful care.</span></h2>
+    <p data-reveal="" data-delay="160" style="margin:32px 0 0;font-size:clamp(17px,1.35vw,19px);line-height:1.7;color:#BDBEB7;max-width:48ch;text-wrap:pretty">Book a consultation with {{ dr }} and take the first step towards healthier, more confident dental care.</p>
+    <div data-reveal="" data-delay="240" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:44px">
+      <button onClick="{{ openBooking }}" style="display:inline-flex;align-items:center;gap:10px;height:58px;padding:0 30px;border-radius:999px;border:0;background:#F8F7F3;color:#1C1C1A;font-size:15px;font-weight:600;cursor:pointer;transition:gap .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1),background .3s" style-hover="gap:16px;transform:scale(1.015);background:#E8EEE9">Book an Appointment <span aria-hidden="true">→</span></button>
+      <a href="tel:+910000000000" style="display:inline-flex;align-items:center;height:58px;padding:0 30px;border-radius:999px;border:1px solid #4A4A46;color:#F8F7F3;font-size:15px;font-weight:600;transition:border-color .3s,transform .45s" style-hover="border-color:#F8F7F3;transform:scale(1.015);color:#F8F7F3">Call the Clinic</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer style="padding:clamp(72px,8vw,112px) 0 {{ footPad }}">
+  <div style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,56px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:48px 40px">
+      <div style="grid-column:span 2;min-width:0;max-width:420px">
+        <div style="font-family:'Instrument Serif',serif;font-size:44px;line-height:1;letter-spacing:.06em">SMITHARA</div>
+        <div style="font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#6F706B;margin-top:8px;font-weight:600">Dental Care</div>
+        <p style="margin:24px 0 0;font-size:16px;line-height:1.7;color:#6F706B;max-width:32ch">Personalized dental care for healthier, confident smiles.</p>
+        <button onClick="{{ openBooking }}" style="margin-top:28px;display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border-radius:999px;border:0;background:#5B7861;color:#FFFFFF;font-size:14px;font-weight:600;cursor:pointer;transition:gap .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1)" style-hover="gap:15px;transform:scale(1.015)">Book Appointment <span aria-hidden="true">→</span></button>
+      </div>
+      <nav aria-label="Footer">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6F706B">Navigation</div>
+        <div style="margin-top:18px;display:flex;flex-direction:column;gap:10px;font-size:15px">
+          <a href="#home">Home</a><a href="#about">About</a><a href="#treatments">Treatments</a><a href="#why">Why Us</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+        </div>
+      </nav>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6F706B">Contact</div>
+        <div style="margin-top:18px;display:flex;flex-direction:column;gap:10px;font-size:15px">
+          <a href="tel:+910000000000">Phone · +91 XXXXX XXXXX</a>
+          <a href="https://wa.me/910000000000">WhatsApp</a>
+          <a href="mailto:hello@example.com">Email · to be added</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6F706B">Location</div>
+        <div style="margin-top:18px;display:flex;flex-direction:column;gap:10px;font-size:15px">
+          <span>Rajarajeshwari Nagar<br>Bengaluru</span>
+          <a href="https://maps.app.goo.gl/Dq4h7Skoro9VBBkw8" target="_blank" rel="noopener">Google Maps ↗</a>
+          <span style="color:#8E8F89">Instagram · if supplied</span>
+        </div>
+      </div>
+    </div>
+    <sc-if value="{{ notes }}" hint-placeholder-val="{{ true }}">
+      <div style="margin-top:40px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.4;color:#7A5F2E;background:#F4EEDC;border:1px dashed #D8C79C;padding:4px 8px;border-radius:3px;display:inline-block">CLIENT INPUT · phone, WhatsApp number, email, social links</span></div>
+    </sc-if>
+    <div style="margin-top:64px;padding-top:24px;border-top:1px solid #E5E4DE;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:#6F706B">
+      <span>© 2026 Smithara Dental Care · {{ dr }}</span>
+      <span>Dental clinic in Rajarajeshwari Nagar, Bengaluru</span>
+    </div>
+  </div>
+</footer>
+
+<sc-if value="{{ showBar }}" hint-placeholder-val="{{ false }}">
+  <div role="navigation" aria-label="Quick actions" style="position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(248,247,243,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid #E5E4DE;padding:10px 12px calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:8px">
+    <a href="tel:+910000000000" style="height:48px;border-radius:999px;border:1px solid #CFCEC6;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600">Call</a>
+    <a href="https://wa.me/910000000000" style="height:48px;border-radius:999px;border:1px solid #CFCEC6;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600">WhatsApp</a>
+    <button onClick="{{ openBooking }}" style="height:48px;border-radius:999px;border:0;background:#5B7861;color:#FFFFFF;font-size:14px;font-weight:600;cursor:pointer">Book →</button>
+  </div>
+</sc-if>
+
+<div onClick="{{ closeBooking }}" aria-hidden="true" style="position:fixed;inset:0;z-index:70;background:rgba(28,28,26,.32);opacity:{{ scrimOp }};pointer-events:{{ scrimPE }};transition:opacity .5s"></div>
+<aside role="dialog" aria-label="Book an appointment" aria-hidden="{{ bookHidden }}" style="position:fixed;top:0;right:0;bottom:0;z-index:80;width:min(500px,100vw);background:#F8F7F3;transform:translateX({{ bookX }});transition:transform .7s cubic-bezier(.2,.7,.2,1),visibility .7s,box-shadow .7s;display:flex;flex-direction:column;overflow-y:auto;box-shadow:{{ bookShadow }};visibility:{{ bookVis }}">
+  <div style="padding:24px clamp(24px,4vw,40px);display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #E5E4DE">
+    <span style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#4F6A56;font-weight:600">Appointment request</span>
+    <button onClick="{{ closeBooking }}" aria-label="Close" style="width:44px;height:44px;border-radius:50%;border:1px solid #E5E4DE;background:#FFFFFF;font-size:20px;line-height:1;cursor:pointer;color:#1C1C1A">×</button>
+  </div>
+  <sc-if value="{{ formVisible }}" hint-placeholder-val="{{ true }}">
+    <form onSubmit="{{ submit }}" style="padding:36px clamp(24px,4vw,40px) 40px;display:flex;flex-direction:column;gap:28px">
+      <div>
+        <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:42px;line-height:1.05">Book an appointment</h2>
+        <p style="margin:12px 0 0;font-size:15px;line-height:1.65;color:#6F706B">Share a few details and the clinic will call you to confirm a time with {{ dr }}.</p>
+      </div>
+      <label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6F706B;font-weight:600">Full name</span><input required="" name="name" autoComplete="name" style="height:48px;border:0;border-bottom:1px solid #CFCEC6;background:transparent;font-size:17px;color:#1C1C1A;outline:none" style-focus="border-bottom-color:#1C1C1A"></label>
+      <label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6F706B;font-weight:600">Phone number</span><input required="" name="phone" type="tel" autoComplete="tel" placeholder="+91" style="height:48px;border:0;border-bottom:1px solid #CFCEC6;background:transparent;font-size:17px;color:#1C1C1A;outline:none" style-focus="border-bottom-color:#1C1C1A"></label>
+      <label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6F706B;font-weight:600">Reason for visit</span>
+        <select name="reason" value="{{ reason }}" onChange="{{ setReason }}" style="height:48px;border:0;border-bottom:1px solid #CFCEC6;background:transparent;font-size:17px;color:#1C1C1A;outline:none;border-radius:0">
+          <sc-for list="{{ reasonOptions }}" as="o" hint-placeholder-count="3"><option value="{{ o.v }}">{{ o.v }}</option></sc-for>
+        </select>
+      </label>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px">
+        <label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6F706B;font-weight:600">Preferred date</span><input name="date" type="date" style="height:48px;border:0;border-bottom:1px solid #CFCEC6;background:transparent;font-size:16px;color:#1C1C1A;outline:none"></label>
+        <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6F706B;font-weight:600">Preferred time</span>
+          <div role="radiogroup" aria-label="Preferred time" style="display:flex;gap:6px;flex-wrap:wrap">
+            <sc-for list="{{ slots }}" as="sl" hint-placeholder-count="3">
+              <button type="button" role="radio" aria-checked="{{ sl.on }}" onClick="{{ sl.pick }}" style="height:38px;padding:0 14px;border-radius:999px;border:1px solid {{ sl.border }};background:{{ sl.bg }};color:{{ sl.color }};font-size:13px;font-weight:600;cursor:pointer;transition:all .3s">{{ sl.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6F706B;font-weight:600">Anything we should know? (optional)</span><textarea name="notes" rows="3" style="border:0;border-bottom:1px solid #CFCEC6;background:transparent;font-size:16px;line-height:1.6;color:#1C1C1A;outline:none;resize:vertical;padding:10px 0"></textarea></label>
+      <button type="submit" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;height:58px;border-radius:999px;border:0;background:#5B7861;color:#FFFFFF;font-size:16px;font-weight:600;cursor:pointer;transition:gap .45s cubic-bezier(.2,.7,.2,1),background .3s" style-hover="gap:16px;background:#4F6A56">Request Appointment <span aria-hidden="true">→</span></button>
+      <div style="display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:#6F706B"><span>Prefer to talk?</span><a href="tel:+910000000000" style="font-weight:600">Call</a><a href="https://wa.me/910000000000" style="font-weight:600">WhatsApp</a></div>
+      <sc-if value="{{ notes }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.4;color:#7A5F2E;background:#F4EEDC;border:1px dashed #D8C79C;padding:4px 8px;border-radius:3px;align-self:flex-start">DEV · connect form to clinic inbox / WhatsApp</span></sc-if>
+    </form>
+  </sc-if>
+  <sc-if value="{{ booked }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:64px clamp(24px,4vw,40px);display:flex;flex-direction:column;align-items:flex-start;gap:20px">
+      <span style="width:56px;height:56px;border-radius:50%;background:#E8EEE9;color:#4F6A56;display:flex;align-items:center;justify-content:center;font-size:22px">✓</span>
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:42px;line-height:1.05">Thank you.</h2>
+      <p style="margin:0;font-size:16px;line-height:1.7;color:#6F706B;max-width:36ch">Your request has been received. The clinic will call you shortly to confirm your appointment.</p>
+      <button onClick="{{ closeBooking }}" style="margin-top:12px;height:52px;padding:0 26px;border-radius:999px;border:1px solid #1C1C1A;background:transparent;color:#1C1C1A;font-size:15px;font-weight:600;cursor:pointer">Back to site</button>
+    </div>
+  </sc-if>
+</aside>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;drName&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Dr. Sushmita Raj&quot;,&quot;Dr. Sushmitha Raj&quot;],&quot;default&quot;:&quot;Dr. Sushmita Raj&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;showNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;mobileBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Mobile&quot;}}">
+const TREAT = [
+  ['Preventive Dentistry', 'Routine check-ups, professional cleaning and early detection to keep teeth and gums healthy.'],
+  ['Root Canal Treatment', 'Treatment for infected or inflamed tooth pulp, aimed at relieving pain and saving the natural tooth.'],
+  ['Dental Implants', 'Replacement of missing teeth with implant-supported crowns, planned around your bone and bite.'],
+  ['Cosmetic Dentistry', 'Treatments that refine the shape, colour and alignment of your smile.'],
+  ['Teeth Whitening', 'Professionally supervised whitening to lift stains and brighten your natural shade.'],
+  ['Crowns & Bridges', 'Custom restorations that protect weakened teeth or replace missing ones.'],
+  ['Orthodontics / Aligners', 'Braces or clear aligners to gradually straighten teeth and improve the bite.'],
+  ['Gum Care', 'Assessment and treatment of gum problems to protect the foundation of your teeth.'],
+  ['Dentures / Restorative Care', 'Removable and fixed options to restore comfort, function and appearance.'],
+  ['Oral Surgery', 'Extractions, including wisdom teeth, carried out with care for your comfort.'],
+];
+const NAV = [['home', 'Home'], ['about', 'About'], ['treatments', 'Treatments'], ['why', 'Why Us'], ['reviews', 'Reviews'], ['contact', 'Contact']];
+const EASE = 'cubic-bezier(.22,.61,.36,1)';
+
+class Component extends DCLogic {
+  state = { w: 1280, scrolled: false, active: 'home', hoverT: -1, openT: 0, menu: false, book: false, booked: false, reason: 'General consultation', slot: 'Morning' };
+  trackRef = React.createRef();
+
+  componentDidMount() {
+    this.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    this.onScroll = () => {
+      const sc = window.scrollY > 24;
+      if (sc !== this.state.scrolled) this.setState({ scrolled: sc });
+      if (!this.raf) this.raf = requestAnimationFrame(() => { this.raf = 0; this.parallax(); });
+    };
+    this.onKey = (e) => { if (e.key === 'Escape') this.setState({ book: false, menu: false }); };
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('keydown', this.onKey);
+    this.onResize(); this.onScroll();
+    this.setupMotion();
+    this.setupActive();
+    this.setupDrag();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('keydown', this.onKey);
+    this.io && this.io.disconnect();
+    this.so && this.so.disconnect();
+    this.dragOff && this.dragOff();
+  }
+
+  componentDidUpdate(_, prev) {
+    const lock = this.state.book || this.state.menu;
+    if (lock !== (prev.book || prev.menu)) document.body.style.overflow = lock ? 'hidden' : '';
+  }
+
+  setupMotion() {
+    const countUp = (el) => {
+      const target = parseFloat(el.dataset.count), dec = (el.dataset.count.split('.')[1] || '').length, t0 = performance.now();
+      const tick = (t) => { const p = Math.min(1, (t - t0) / 1400), e = 1 - Math.pow(1 - p, 3); el.textContent = (target * e).toFixed(dec); if (p < 1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    };
+    if (this.reduce) return;
+    document.querySelectorAll('[data-hero]').forEach((el) => {
+      const i = +el.dataset.hero, line = el.hasAttribute('data-line');
+      el.animate(line ? [{ transform: 'translateY(108%)' }, { transform: 'none' }] : [{ opacity: 0, transform: 'translateY(22px)' }, { opacity: 1, transform: 'none' }],
+        { duration: line ? 950 : 800, delay: 200 + i * 110, easing: EASE, fill: 'backwards' });
+    });
+    const hi = document.querySelector('[data-hero-img]');
+    hi && hi.animate([{ opacity: 0, transform: 'scale(.96)' }, { opacity: 1, transform: 'none' }], { duration: 1300, easing: EASE, fill: 'backwards' });
+
+    this.io = new IntersectionObserver((entries) => entries.forEach((en) => {
+      if (!en.isIntersecting) return;
+      const el = en.target; this.io.unobserve(el);
+      const kind = el.dataset.reveal, d = +(el.dataset.delay || 0);
+      const kf = kind === 'clip'
+        ? [{ clipPath: 'inset(14% 0 14% 0)', opacity: 0, transform: 'scale(.96)' }, { clipPath: 'inset(0 0 0 0)', opacity: 1, transform: 'none' }]
+        : kind === 'img' ? [{ opacity: 0, transform: 'scale(.96)' }, { opacity: 1, transform: 'none' }]
+        : [{ opacity: 0, transform: 'translateY(32px)' }, { opacity: 1, transform: 'none' }];
+      el.style.opacity = '';
+      el.animate(kf, { duration: kind ? 1150 : 780, delay: d, easing: EASE, fill: 'backwards' });
+      el.querySelectorAll('[data-count]').forEach(countUp);
+    }), { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+    document.querySelectorAll('[data-reveal]').forEach((el) => {
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.9) return;
+      el.style.opacity = '0'; this.io.observe(el);
+    });
+  }
+
+  parallax() {
+    if (this.reduce) return;
+    document.querySelectorAll('[data-parallax]').forEach((el) => {
+      const r = el.parentElement.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      const c = r.top + r.height / 2 - window.innerHeight / 2;
+      el.style.transform = `translate3d(0, ${(-c * +el.dataset.parallax).toFixed(1)}px, 0)`;
+    });
+  }
+
+  setupActive() {
+    this.so = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) this.setState({ active: e.target.dataset.nav }); }), { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('[data-nav]').forEach((el) => this.so.observe(el));
+  }
+
+  setupDrag() {
+    const t = this.trackRef.current; if (!t) return;
+    let down = false, sx = 0, sl = 0;
+    const dn = (e) => { if (e.pointerType !== 'mouse') return; down = true; sx = e.clientX; sl = t.scrollLeft; t.style.scrollSnapType = 'none'; t.style.cursor = 'grabbing'; t.style.userSelect = 'none'; };
+    const mv = (e) => { if (down) t.scrollLeft = sl - (e.clientX - sx); };
+    const up = () => {
+      if (!down) return; down = false; t.style.cursor = ''; t.style.userSelect = '';
+      const step = this.step(); const target = Math.round(t.scrollLeft / step) * step;
+      t.scrollTo({ left: target, behavior: 'smooth' });
+      setTimeout(() => { t.style.scrollSnapType = ''; }, 500);
+    };
+    t.addEventListener('pointerdown', dn); window.addEventListener('pointermove', mv); window.addEventListener('pointerup', up);
+    this.dragOff = () => { t.removeEventListener('pointerdown', dn); window.removeEventListener('pointermove', mv); window.removeEventListener('pointerup', up); };
+  }
+
+  step() { const c = this.trackRef.current && this.trackRef.current.querySelector('[data-card]'); return c ? c.getBoundingClientRect().width + 20 : 460; }
+  slide(dir) { const t = this.trackRef.current; t && t.scrollBy({ left: dir * this.step(), behavior: this.reduce ? 'auto' : 'smooth' }); }
+  openBook(reason) { this.setState((s) => ({ book: true, booked: false, menu: false, reason: typeof reason === 'string' ? reason : s.reason })); }
+
+  renderVals() {
+    const s = this.state, p = this.props;
+    const dr = p.drName ?? 'Dr. Sushmita Raj';
+    const notes = p.showNotes ?? true;
+    const isDesktop = s.w >= 980;
+    const treatments = TREAT.map(([title, desc], i) => {
+      const on = s.hoverT === i, open = s.openT === i;
+      return {
+        title, desc, num: String(i + 1).padStart(2, '0'), aria: `${title}. ${desc} Book this treatment.`,
+        pad: on ? '40px' : '28px', bg: on ? '#EFF2EE' : 'rgba(239,242,238,0)', shift: on ? '10px' : '0px',
+        descOp: on ? 1 : 0, descY: on ? '0px' : '8px', imgClip: on ? 'inset(0% 0% 0% 0%)' : 'inset(50% 0% 50% 0%)',
+        arrowBg: on ? '#5B7861' : 'transparent', arrowColor: on ? '#FFFFFF' : '#1C1C1A', arrowBorder: on ? '#5B7861' : '#CFCEC6', arrowX: on ? '4px' : '0px',
+        enter: () => this.setState({ hoverT: i }),
+        book: () => this.openBook(title),
+        key: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.openBook(title); } },
+        open, sign: open ? '−' : '+',
+        toggle: () => this.setState({ openT: open ? -1 : i }),
+      };
+    });
+    return {
+      dr, notes, isDesktop, isMobile: !isDesktop, isWide: s.w >= 1200,
+      showBar: !isDesktop && (p.mobileBar ?? true),
+      footPad: !isDesktop && (p.mobileBar ?? true) ? '120px' : '40px',
+      navH: s.scrolled ? '66px' : '88px',
+      navBg: s.scrolled || s.menu ? 'rgba(248,247,243,.86)' : 'rgba(248,247,243,0)',
+      navBorder: s.scrolled ? '#E5E4DE' : 'rgba(229,228,222,0)',
+      navBlur: s.scrolled ? 'saturate(1.4) blur(14px)' : 'none',
+      navItems: NAV.map(([id, label], i) => ({ href: '#' + id, label, num: String(i + 1).padStart(2, '0'), color: s.active === id ? '#1C1C1A' : '#6F706B', dot: s.active === id ? 1 : 0 })),
+      menuOpen: s.menu, menuOp: s.menu ? 1 : 0, menuVis: s.menu ? 'visible' : 'hidden', menuY: s.menu ? '0px' : '24px',
+      toggleMenu: () => this.setState({ menu: !s.menu }),
+      closeMenu: () => this.setState({ menu: false }),
+      treatments, leaveT: () => this.setState({ hoverT: -1 }),
+      reviews: [1, 2, 3, 4].map((n) => ({ text: 'Verified Google review text goes here, added exactly as published on the clinic’s Google Business listing.', name: `Patient name · review ${n}` })),
+      trackRef: this.trackRef, prev: () => this.slide(-1), next: () => this.slide(1),
+      openBooking: () => this.openBook(),
+      closeBooking: () => this.setState({ book: false }),
+      bookX: s.book ? '0%' : '100%', bookShadow: s.book ? '-30px 0 80px -40px rgba(28,28,26,.35)' : 'none', bookVis: s.book ? 'visible' : 'hidden', bookHidden: !s.book, scrimOp: s.book ? 1 : 0, scrimPE: s.book ? 'auto' : 'none',
+      formVisible: !s.booked, booked: s.booked,
+      submit: (e) => { e.preventDefault(); this.setState({ booked: true }); },
+      reason: s.reason, setReason: (e) => this.setState({ reason: e.target.value }),
+      reasonOptions: ['General consultation', ...TREAT.map((t) => t[0]), 'Not sure yet'].map((v) => ({ v })),
+      slots: ['Morning', 'Afternoon', 'Evening'].map((label) => {
+        const on = s.slot === label;
+        return { label, on, pick: () => this.setState({ slot: label }), bg: on ? '#1C1C1A' : 'transparent', color: on ? '#F8F7F3' : '#1C1C1A', border: on ? '#1C1C1A' : '#CFCEC6' };
+      }),
+    };
+  }
+}
+</script>
+</body>
+</html>

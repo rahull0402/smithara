@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+  <a href="{{ href }}" onMouseEnter="{{ on }}" onMouseLeave="{{ off }}" onFocus="{{ on }}" onBlur="{{ off }}" style="position:relative;display:grid;grid-template-columns:64px minmax(0,1fr) 176px 200px;align-items:center;gap:32px;padding:{{ pad }} 24px;border-top:1px solid #DED9CD;background:{{ bg }};color:#0B0B0D;outline:none;transition:padding .6s cubic-bezier(.2,.7,.2,1),background .5s">
+    <span aria-hidden="true" style="position:absolute;left:0;right:0;top:-1px;height:1px;background:#D6A63A;transform:scaleX({{ lineX }});transform-origin:left;transition:transform .7s cubic-bezier(.2,.7,.2,1)"></span>
+    <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;color:#8B6B1F">{{ num }}</span>
+    <span style="display:flex;flex-direction:column;gap:8px;transform:translateX({{ shift }});transition:transform .6s cubic-bezier(.2,.7,.2,1)">
+      <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:{{ titleSize }};line-height:1.05;letter-spacing:-.005em">{{ title }}</h3>
+      <span style="font-family:Manrope,sans-serif;font-size:15px;line-height:1.6;color:#5E5B54;max-width:54ch">{{ desc }}</span>
+    </span>
+    <span aria-hidden="true" style="height:112px;clip-path:{{ clip }};transition:clip-path .75s cubic-bezier(.2,.7,.2,1);pointer-events:none">
+      <dc-import name="Photo" style="display:block;width:100%;height:100%" slot="{{ slot }}" label="{{ imgLabel }}" radius="4px" hint-size="100%,100%"></dc-import>
+    </span>
+    <span style="display:flex;align-items:center;justify-content:flex-end;gap:{{ gap }};font-family:Manrope,sans-serif;font-size:14px;font-weight:600;transition:gap .5s cubic-bezier(.2,.7,.2,1)">
+      {{ cta }}
+      <span aria-hidden="true" style="width:42px;height:42px;border-radius:50%;border:1px solid {{ arrowBorder }};background:{{ arrowBg }};color:{{ arrowFg }};display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .5s cubic-bezier(.2,.7,.2,1)">→</span>
+    </span>
+  </a>
+</sc-if>
+<sc-if value="{{ mobileAccordion }}" hint-placeholder-val="{{ false }}">
+  <div style="border-top:1px solid #DED9CD">
+    <button onClick="{{ toggle }}" aria-expanded="{{ open }}" style="width:100%;display:grid;grid-template-columns:36px 1fr 36px;align-items:center;gap:12px;padding:22px 0;background:none;border:0;text-align:left;cursor:pointer;color:#0B0B0D">
+      <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:#8B6B1F">{{ num }}</span>
+      <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:28px;line-height:1.1">{{ title }}</h3>
+      <span aria-hidden="true" style="width:36px;height:36px;border-radius:50%;border:1px solid {{ signBorder }};background:{{ signBg }};color:{{ signFg }};display:flex;align-items:center;justify-content:center;font-family:Manrope,sans-serif;font-size:16px;transition:all .4s">{{ sign }}</span>
+    </button>
+    <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:0 0 28px 48px;display:flex;flex-direction:column;align-items:flex-start;gap:18px">
+        <p style="margin:0;font-family:Manrope,sans-serif;font-size:15px;line-height:1.65;color:#5E5B54">{{ desc }}</p>
+        <div style="width:100%;aspect-ratio:16/10"><dc-import name="Photo" style="display:block;width:100%;height:100%" slot="{{ slot }}" label="{{ imgLabel }}" radius="4px" hint-size="100%,100%"></dc-import></div>
+        <a href="{{ href }}" style="display:inline-flex;align-items:center;gap:10px;font-family:Manrope,sans-serif;font-size:14px;font-weight:600;padding-bottom:4px;border-bottom:1px solid #D6A63A;color:#0B0B0D">{{ cta }} <span style="color:#8B6B1F">→</span></a>
+      </div>
+    </sc-if>
+  </div>
+</sc-if>
+<sc-if value="{{ mobileList }}" hint-placeholder-val="{{ false }}">
+  <a href="{{ href }}" style="display:grid;grid-template-columns:32px 1fr 36px;gap:12px;align-items:start;padding:22px 0;border-top:1px solid #DED9CD;color:#0B0B0D">
+    <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:#8B6B1F;padding-top:3px">{{ num }}</span>
+    <span style="display:flex;flex-direction:column;gap:6px">
+      <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:27px;line-height:1.1">{{ title }}</h3>
+      <span style="font-family:Manrope,sans-serif;font-size:14px;line-height:1.6;color:#5E5B54">{{ desc }}</span>
+    </span>
+    <span aria-hidden="true" style="width:36px;height:36px;border-radius:50%;border:1px solid #DED9CD;display:flex;align-items:center;justify-content:center;font-size:15px;color:#8B6B1F">→</span>
+  </a>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:200},&quot;num&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;01&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Preventive Dentistry&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;desc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Routine care for maintaining healthy teeth and gums.&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;slug&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;preventive-dentistry&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;slot&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;cta&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Explore treatment&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;accordion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;dense&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;defaultOpen&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { w: 1280, hover: false, open: false };
+  componentDidMount() {
+    this.r = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this.r); this.r();
+    if (this.props.defaultOpen) this.setState({ open: true });
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.r); }
+  renderVals() {
+    const p = this.props, s = this.state, h = s.hover, desktop = s.w >= 820, dense = p.dense ?? false;
+    const slug = p.slug ?? 'preventive-dentistry';
+    return {
+      desktop, mobileAccordion: !desktop && (p.accordion ?? true), mobileList: !desktop && !(p.accordion ?? true),
+      num: p.num ?? '01', title: p.title ?? 'Treatment', desc: p.desc ?? '',
+      href: `Treatment Detail.dc.html?t=${slug}`, slot: p.slot ?? `treat-${slug}`,
+      imgLabel: `Treatment image · ${p.title ?? ''} · 16:10`,
+      cta: p.cta ?? 'Explore treatment',
+      titleSize: dense ? 'clamp(28px,2.5vw,38px)' : 'clamp(30px,2.9vw,44px)',
+      pad: h ? (dense ? '34px' : '42px') : (dense ? '24px' : '30px'),
+      bg: h ? '#FFFFFF' : 'rgba(255,255,255,0)', lineX: h ? 1 : 0, shift: h ? '10px' : '0px',
+      clip: h ? 'inset(0% 0% 0% 0% round 4px)' : 'inset(50% 50% 50% 50% round 4px)',
+      gap: h ? '18px' : '12px',
+      arrowBorder: h ? '#19191C' : '#DED9CD', arrowBg: h ? '#19191C' : 'transparent', arrowFg: h ? '#D6A63A' : '#0B0B0D',
+      on: () => this.setState({ hover: true }), off: () => this.setState({ hover: false }),
+      open: s.open, sign: s.open ? '−' : '+', toggle: () => this.setState({ open: !s.open }),
+      signBorder: s.open ? '#19191C' : '#DED9CD', signBg: s.open ? '#19191C' : 'transparent', signFg: s.open ? '#D6A63A' : '#0B0B0D',
+    };
+  }
+}
+</script>
+</body>
+</html>

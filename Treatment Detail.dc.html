@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Treatment · Smithara Dental Care, Rajarajeshwari Nagar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Manrope:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap">
+<script src="./site.js"></script>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:#FAF8F3;color:#0B0B0D;font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#0B0B0D;text-decoration:none}
+a:hover{color:#8B6B1F}
+button{font-family:inherit}
+::selection{background:#E8D39A}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</helmet>
+
+<dc-import name="SiteNav" page="treatments" whatsapp="{{ wa }}" hint-size="100%,0px"></dc-import>
+
+<main>
+<section aria-labelledby="h1" style="position:relative;overflow:hidden;padding:clamp(132px,14vw,184px) 0 clamp(72px,8vw,112px)">
+  <div aria-hidden="true" style="position:absolute;right:-16vw;top:-20vw;width:56vw;height:56vw;border-radius:50%;background:radial-gradient(circle, rgba(232,211,154,.3) 0%, rgba(232,211,154,0) 62%);pointer-events:none"></div>
+  <div style="position:relative;max-width:1360px;margin:0 auto;padding:0 clamp(20px,4.5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:56px clamp(48px,7vw,120px);align-items:center">
+    <div>
+      <nav aria-label="Breadcrumb" data-hero="0" style="display:flex;flex-wrap:wrap;gap:10px;font-size:13px;color:#5E5B54"><a href="Home.dc.html">Home</a><span aria-hidden="true" style="color:#C4952F">/</span><a href="Treatments.dc.html">Treatments</a><span aria-hidden="true" style="color:#C4952F">/</span><span aria-current="page" style="color:#0B0B0D;font-weight:600">{{ t.title }}</span></nav>
+      <p data-hero="1" style="margin:40px 0 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;color:#8B6B1F">{{ t.num }}</p>
+      <h1 id="h1" data-hero="2" style="margin:8px 0 0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(52px,6.8vw,108px);line-height:.95;letter-spacing:-.02em;text-wrap:balance">{{ t.title }}</h1>
+      <p data-hero="3" style="margin:28px 0 0;font-size:clamp(17px,1.35vw,19px);line-height:1.7;color:#5E5B54;max-width:44ch">{{ t.desc }}</p>
+      <div data-hero="4" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:40px">
+        <a href="{{ bookHref }}" style="display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 28px;border-radius:6px;background:#19191C;color:#FFFFFF;font-size:15px;font-weight:600;transition:gap .45s cubic-bezier(.2,.7,.2,1),background .3s" style-hover="gap:18px;background:#0B0B0D;color:#FFFFFF">Book Appointment <span aria-hidden="true" style="color:#D6A63A">→</span></a>
+        <a href="tel:+919731391404" style="display:inline-flex;align-items:center;height:56px;padding:0 26px;border-radius:6px;border:1px solid #CFC8B8;font-size:15px;font-weight:600" style-hover="border-color:#0B0B0D;color:#0B0B0D">Call +91 97313 91404</a>
+      </div>
+    </div>
+    <div data-hero="5" data-kind="mask" style="aspect-ratio:4/5;max-width:560px;width:100%;justify-self:center">
+      <dc-import name="Photo" style="display:block;width:100%;height:100%" slot="{{ slot }}" label="{{ imgLabel }}" radius="999px 999px 8px 8px" hint-size="100%,100%"></dc-import>
+    </div>
+  </div>
+</section>
+
+<section aria-label="About this treatment" style="padding:clamp(80px,10vw,144px) 0;border-top:1px solid #DED9CD">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,4.5vw,56px);display:flex;flex-direction:column;gap:clamp(72px,9vw,120px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:24px clamp(48px,7vw,120px)">
+      <h2 data-reveal="" style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,4.4vw,64px);line-height:1;letter-spacing:-.01em">What is <span style="font-style:italic;color:#9A7420">{{ t.title }}</span>?</h2>
+      <div data-reveal="" data-delay="100" style="display:flex;flex-direction:column;align-items:flex-start;gap:14px">
+        <p style="margin:0;font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.45;font-style:italic;color:#8A867C">[Plain-language explanation of this treatment, written or approved by Dr. Sushmita Raj.]</p>
+        <sc-if value="{{ notes }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.4;color:#7A5F2E;background:#F6EFD9;border:1px dashed #D9C590;padding:4px 8px;border-radius:3px">CLIENT INPUT · verified medical copy only</span></sc-if>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:24px clamp(48px,7vw,120px)">
+      <h2 data-reveal="" style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,4.4vw,64px);line-height:1;letter-spacing:-.01em">Who is it <span style="font-style:italic;color:#9A7420">for?</span></h2>
+      <div data-reveal="" data-delay="100" style="display:flex;flex-direction:column;align-items:flex-start;gap:14px">
+        <p style="margin:0;font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.45;font-style:italic;color:#8A867C">[Who may benefit from this treatment and when the doctor may recommend it.]</p>
+        <sc-if value="{{ notes }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.4;color:#7A5F2E;background:#F6EFD9;border:1px dashed #D9C590;padding:4px 8px;border-radius:3px">CLIENT INPUT · verified medical copy only</span></sc-if>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-theme="dark" aria-labelledby="h-exp" style="background:#0B0B0D;color:#FAF8F3;padding:clamp(96px,11vw,160px) 0">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,4.5vw,56px)">
+    <p data-reveal="" style="margin:0;display:flex;align-items:center;gap:12px;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#D6A63A"><svg aria-hidden="true" viewBox="0 0 10 10" width="10" height="10"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z" fill="#D6A63A"></path></svg>Your treatment journey</p>
+    <h2 id="h-exp" data-reveal="" data-delay="80" style="margin:24px 0 0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(44px,5.6vw,84px);line-height:1;letter-spacing:-.015em">What to <span style="font-style:italic;color:#D6A63A">expect</span></h2>
+    <ol style="list-style:none;margin:clamp(56px,7vw,96px) 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:48px 32px">
+      <li><span data-reveal="num" style="display:block;font-family:'Cormorant Garamond',serif;font-size:clamp(80px,8vw,120px);line-height:.8;color:#D6A63A">01</span><span style="display:block;height:1px;background:rgba(214,166,58,.35);margin:28px 0 22px"></span><h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:30px">Consultation</h3><p style="margin:10px 0 0;font-size:15px;line-height:1.7;color:#B4B0A6">Discuss your concerns and dental history with Dr. Sushmita.</p></li>
+      <li><span data-reveal="num" data-delay="100" style="display:block;font-family:'Cormorant Garamond',serif;font-size:clamp(80px,8vw,120px);line-height:.8;color:#D6A63A">02</span><span style="display:block;height:1px;background:rgba(214,166,58,.35);margin:28px 0 22px"></span><h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:30px">Diagnosis</h3><p style="margin:10px 0 0;font-size:15px;line-height:1.7;color:#B4B0A6">An examination to understand what you need, with findings explained clearly.</p></li>
+      <li><span data-reveal="num" data-delay="200" style="display:block;font-family:'Cormorant Garamond',serif;font-size:clamp(80px,8vw,120px);line-height:.8;color:#D6A63A">03</span><span style="display:block;height:1px;background:rgba(214,166,58,.35);margin:28px 0 22px"></span><h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:30px">Treatment</h3><p style="margin:10px 0 0;font-size:15px;line-height:1.7;color:#B4B0A6">Your treatment is carried out as planned and discussed with you.</p></li>
+      <li><span data-reveal="num" data-delay="300" style="display:block;font-family:'Cormorant Garamond',serif;font-size:clamp(80px,8vw,120px);line-height:.8;color:#D6A63A">04</span><span style="display:block;height:1px;background:rgba(214,166,58,.35);margin:28px 0 22px"></span><h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:30px">Follow-up</h3><p style="margin:10px 0 0;font-size:15px;line-height:1.7;color:#B4B0A6">Aftercare guidance and a review where needed.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section aria-labelledby="h-faq" style="padding:clamp(96px,11vw,160px) 0">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,4.5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:40px clamp(48px,7vw,120px);align-items:start">
+    <div>
+      <p data-reveal="" style="margin:0;display:flex;align-items:center;gap:12px;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#8B6B1F"><svg aria-hidden="true" viewBox="0 0 10 10" width="10" height="10"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z" fill="#D6A63A"></path></svg>FAQ</p>
+      <h2 id="h-faq" data-reveal="" data-delay="80" style="margin:24px 0 0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(40px,4.8vw,72px);line-height:1;letter-spacing:-.015em">Frequently asked <span style="font-style:italic;color:#9A7420">questions</span></h2>
+      <sc-if value="{{ notes }}" hint-placeholder-val="{{ true }}"><div style="margin-top:20px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.4;color:#7A5F2E;background:#F6EFD9;border:1px dashed #D9C590;padding:4px 8px;border-radius:3px;display:inline-block">CLIENT INPUT · questions &amp; answers per treatment</span></div></sc-if>
+    </div>
+    <div data-reveal="" data-delay="120" style="border-bottom:1px solid #DED9CD">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="4">
+        <div style="border-top:1px solid #DED9CD">
+          <button onClick="{{ f.toggle }}" aria-expanded="{{ f.open }}" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 0;background:none;border:0;text-align:left;cursor:pointer;color:#0B0B0D">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2vw,28px);font-weight:500;line-height:1.2">{{ f.q }}</span>
+            <span aria-hidden="true" style="flex:0 0 36px;width:36px;height:36px;border-radius:50%;border:1px solid {{ f.border }};background:{{ f.bg }};color:{{ f.fg }};display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .4s">{{ f.sign }}</span>
+          </button>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding:0 56px 28px 0;font-size:16px;line-height:1.7;color:#8A867C;font-style:italic">{{ f.a }}</p></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-book" style="background:#F1EFE9;padding:clamp(96px,11vw,160px) 0">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,4.5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px clamp(48px,7vw,120px);align-items:end">
+    <div>
+      <p data-reveal="" style="margin:0;display:flex;align-items:center;gap:12px;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#8B6B1F"><svg aria-hidden="true" viewBox="0 0 10 10" width="10" height="10"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z" fill="#D6A63A"></path></svg>Book an appointment</p>
+      <h2 id="h-book" data-reveal="" data-delay="80" style="margin:24px 0 0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(44px,5.6vw,84px);line-height:1;letter-spacing:-.015em;text-wrap:balance">Start with a <span style="font-style:italic;color:#9A7420">conversation.</span></h2>
+    </div>
+    <div data-reveal="" data-delay="160" style="display:flex;flex-direction:column;align-items:flex-start;gap:24px">
+      <p style="margin:0;font-size:17px;line-height:1.75;color:#5E5B54;max-width:44ch">Book a consultation with Dr. Sushmita Raj to discuss whether {{ t.title }} is right for you.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <a href="{{ bookHref }}" style="display:inline-flex;align-items:center;gap:12px;height:58px;padding:0 30px;border-radius:6px;background:#19191C;color:#FFFFFF;font-size:15px;font-weight:600;transition:gap .45s cubic-bezier(.2,.7,.2,1),background .3s" style-hover="gap:18px;background:#0B0B0D;color:#FFFFFF">Book Appointment <span aria-hidden="true" style="color:#D6A63A">→</span></a>
+        <a href="{{ next.href }}" style="display:inline-flex;align-items:center;gap:10px;height:58px;padding:0 24px;border-radius:6px;border:1px solid #CFC8B8;font-size:15px;font-weight:600" style-hover="border-color:#0B0B0D;color:#0B0B0D">Next: {{ next.title }} <span aria-hidden="true" style="color:#8B6B1F">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<dc-import name="SiteFooter" hint-size="100%,560px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;slug&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;preventive-dentistry&quot;,&quot;root-canal-treatment&quot;,&quot;dental-implants&quot;,&quot;cosmetic-dentistry&quot;,&quot;teeth-whitening&quot;,&quot;crowns-and-bridges&quot;,&quot;orthodontics-aligners&quot;,&quot;gum-care&quot;,&quot;dentures-restorative&quot;,&quot;oral-surgery&quot;],&quot;default&quot;:&quot;preventive-dentistry&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Preview&quot;},&quot;showNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Review&quot;},&quot;whatsappConfirmed&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Review&quot;}}">
+const T = [
+  ['preventive-dentistry', 'Preventive Dentistry', 'Routine care for maintaining healthy teeth and gums.'],
+  ['root-canal-treatment', 'Root Canal Treatment', 'Comfort-focused treatment to preserve natural teeth.'],
+  ['dental-implants', 'Dental Implants', 'Replacing missing teeth with implant-supported restorations.'],
+  ['cosmetic-dentistry', 'Cosmetic Dentistry', 'Treatments that refine the shape, colour and alignment of your smile.'],
+  ['teeth-whitening', 'Teeth Whitening', 'Professionally supervised whitening to brighten your natural shade.'],
+  ['crowns-and-bridges', 'Crowns & Bridges', 'Custom restorations that protect weakened teeth or replace missing ones.'],
+  ['orthodontics-aligners', 'Orthodontics / Aligners', 'Braces or clear aligners to gradually straighten teeth and improve the bite.'],
+  ['gum-care', 'Gum Care', 'Assessment and care of the gums that support your teeth.'],
+  ['dentures-restorative', 'Dentures / Restorative Care', 'Removable and fixed options to restore comfort, function and appearance.'],
+  ['oral-surgery', 'Oral Surgery', 'Extractions, including wisdom teeth, carried out with care for your comfort.'],
+];
+const ANSWER = '[Answer to be provided by Dr. Sushmita Raj.]';
+
+class Component extends DCLogic {
+  state = { open: 0 };
+  componentDidMount() { document.title = `${this.cur()[1]} · Smithara Dental Care, Rajarajeshwari Nagar`; }
+  idx() {
+    const q = new URLSearchParams(window.location.search).get('t') || this.props.slug || T[0][0];
+    const i = T.findIndex((t) => t[0] === q);
+    return i < 0 ? 0 : i;
+  }
+  cur() { return T[this.idx()]; }
+  renderVals() {
+    const i = this.idx(), [slug, title, desc] = T[i], n = T[(i + 1) % T.length];
+    const qs = [`How long does ${title.toLowerCase()} take?`, 'Will I need more than one visit?', 'How should I prepare for my appointment?', 'What aftercare will I need?'];
+    return {
+      notes: this.props.showNotes ?? true, wa: this.props.whatsappConfirmed ?? false,
+      t: { title, desc, num: String(i + 1).padStart(2, '0') },
+      slot: `treat-${slug}`, imgLabel: `Treatment image · ${title} · 4:5`,
+      bookHref: `Contact.dc.html?t=${slug}`,
+      next: { title: n[1], href: `Treatment Detail.dc.html?t=${n[0]}` },
+      faqs: qs.map((q, k) => {
+        const open = this.state.open === k;
+        return { q, a: ANSWER, open, sign: open ? '−' : '+', border: open ? '#19191C' : '#DED9CD', bg: open ? '#19191C' : 'transparent', fg: open ? '#D6A63A' : '#0B0B0D', toggle: () => this.setState({ open: open ? -1 : k }) };
+      }),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><script src="./site.js"></script></helmet>
+<div style="position:fixed;top:{{ top }};left:0;right:0;z-index:50;display:flex;justify-content:center;padding:0 clamp(12px,3vw,32px);pointer-events:none;transform:translateY({{ y }});transition:transform .42s cubic-bezier(.33,1,.68,1),top .5s cubic-bezier(.2,.7,.2,1)">
+  <header style="pointer-events:auto;width:100%;max-width:{{ maxW }};height:{{ h }};display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 {{ padR }} 0 {{ padL }};border-radius:999px;background:{{ bg }};border:1px solid {{ border }};box-shadow:{{ shadow }};backdrop-filter:{{ blur }};-webkit-backdrop-filter:{{ blur }};color:{{ fg }};transition:max-width .6s cubic-bezier(.2,.7,.2,1),height .5s cubic-bezier(.2,.7,.2,1),padding .5s cubic-bezier(.2,.7,.2,1),background .5s,border-color .5s,box-shadow .5s,color .5s">
+    <a href="Home.dc.html" aria-label="Smithara Dental Care — home" style="display:flex;align-items:center;gap:11px;color:{{ fg }};flex:0 0 auto">
+      <img src="assets/smithara-logo.png" alt="" width="42" height="42" style="display:block;width:{{ logoSize }};height:{{ logoSize }};border-radius:50%;transition:width .5s cubic-bezier(.2,.7,.2,1),height .5s cubic-bezier(.2,.7,.2,1);box-shadow:0 0 0 1px rgba(214,166,58,.35)">
+      <span style="display:flex;flex-direction:column;line-height:1">
+        <span style="font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:600;letter-spacing:.01em">Smithara</span>
+        <span style="font-family:Manrope,sans-serif;font-size:8px;letter-spacing:.36em;text-transform:uppercase;font-weight:700;margin-top:4px;color:{{ sub }}">Dental Care</span>
+      </span>
+    </a>
+    <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+      <nav aria-label="Primary" style="display:flex;align-items:center;gap:6px">
+        <sc-for list="{{ links }}" as="l" hint-placeholder-count="4">
+          <a href="{{ l.href }}" aria-current="{{ l.current }}" style="position:relative;font-family:Manrope,sans-serif;font-size:14px;font-weight:500;color:{{ l.color }};padding:9px 16px;border-radius:999px;background:{{ l.bg }};transition:background .35s,color .3s" style-hover="background:{{ hoverBg }};color:{{ fg }}">
+            {{ l.label }}
+            <svg aria-hidden="true" viewBox="0 0 10 10" width="6" height="6" style="position:absolute;left:50%;bottom:1px;margin-left:-3px;opacity:{{ l.dot }};transition:opacity .4s"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z" fill="#D6A63A"></path></svg>
+          </a>
+        </sc-for>
+      </nav>
+      <div style="display:flex;align-items:center;gap:18px;flex:0 0 auto">
+        <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+          <a href="tel:+919731391404" style="font-family:Manrope,sans-serif;font-size:13.5px;font-weight:500;color:{{ fg }}">+91 97313 91404</a>
+        </sc-if>
+        <a href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:10px;height:{{ ctaH }};padding:0 20px;border-radius:999px;background:{{ ctaBg }};color:{{ ctaFg }};font-family:Manrope,sans-serif;font-size:14px;font-weight:600;transition:gap .45s cubic-bezier(.2,.7,.2,1),background .4s,color .4s,height .5s cubic-bezier(.2,.7,.2,1)" style-hover="gap:15px;color:{{ ctaFg }}">Book Appointment <span aria-hidden="true" style="color:{{ ctaArrow }}">→</span></a>
+      </div>
+    </sc-if>
+    <sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ openMenu }}" aria-label="Open menu" aria-expanded="{{ menu }}" style="width:44px;height:44px;border-radius:50%;border:1px solid {{ border2 }};background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;flex:0 0 auto">
+        <span style="width:18px;height:1.5px;background:{{ fg }}"></span>
+        <span style="width:12px;height:1.5px;background:#D6A63A;margin-left:6px"></span>
+      </button>
+    </sc-if>
+  </header>
+</div>
+
+<div role="dialog" aria-label="Menu" aria-hidden="{{ menuHidden }}" style="position:fixed;inset:0;z-index:60;background:#0B0B0D;color:#FAF8F3;clip-path:{{ menuClip }};visibility:{{ menuVis }};transition:clip-path .65s cubic-bezier(.7,0,.2,1),visibility .65s;display:flex;flex-direction:column;padding:16px clamp(20px,4.5vw,56px) 28px;overflow-y:auto">
+  <div style="display:flex;justify-content:space-between;align-items:center;height:56px">
+    <span style="display:flex;align-items:center;gap:12px"><img src="assets/smithara-logo.png" alt="" width="40" height="40" style="border-radius:50%"><span style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600">Smithara</span></span>
+    <button onClick="{{ closeMenu }}" aria-label="Close menu" style="width:44px;height:44px;border-radius:50%;border:1px solid rgba(250,248,243,.18);background:transparent;color:#FAF8F3;font-size:22px;line-height:1;cursor:pointer">×</button>
+  </div>
+  <nav aria-label="Mobile" style="display:flex;flex-direction:column;margin-top:40px">
+    <sc-for list="{{ links }}" as="l" hint-placeholder-count="4">
+      <a href="{{ l.href }}" onClick="{{ closeMenu }}" style="display:flex;align-items:baseline;gap:18px;padding:14px 0;border-bottom:1px solid rgba(250,248,243,.1);font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:500;line-height:1.1;color:#FAF8F3">
+        <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#D6A63A;width:22px">{{ l.num }}</span>{{ l.label }}
+      </a>
+    </sc-for>
+  </nav>
+  <div style="margin-top:auto;padding-top:40px;display:flex;flex-direction:column;gap:12px">
+    <a href="Contact.dc.html" style="height:56px;border-radius:6px;background:#D6A63A;color:#0B0B0D;font-family:Manrope,sans-serif;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px">Book an Appointment →</a>
+    <a href="tel:+919731391404" style="height:52px;border-radius:6px;border:1px solid rgba(250,248,243,.22);color:#FAF8F3;font-family:Manrope,sans-serif;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center">Call +91 97313 91404</a>
+    <p style="margin:12px 0 0;font-family:Manrope,sans-serif;font-size:13px;line-height:1.6;color:#A9A59B">Kenchenhalli, Rajarajeshwari Nagar, Bengaluru · @smitharadental</p>
+  </div>
+</div>
+
+<sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+  <div role="navigation" aria-label="Quick actions" style="position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(250,248,243,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid #DED9CD;padding:10px 12px calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px;font-family:Manrope,sans-serif">
+    <a href="tel:+919731391404" style="height:48px;border-radius:6px;border:1px solid #DED9CD;background:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#0B0B0D">Call</a>
+    <a href="{{ midHref }}" target="_blank" rel="noopener" style="height:48px;border-radius:6px;border:1px solid #DED9CD;background:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#0B0B0D">{{ midLabel }}</a>
+    <a href="Contact.dc.html" style="height:48px;border-radius:6px;background:#19191C;color:#FFFFFF;display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:600">Book <span style="color:#D6A63A">→</span></a>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:120},&quot;page&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;treatments&quot;,&quot;about&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;whatsapp&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const LINKS = [
+  ['home', 'Home', 'Home.dc.html'],
+  ['treatments', 'Treatments', 'Treatments.dc.html'],
+  ['about', 'About', 'About.dc.html'],
+  ['contact', 'Contact', 'Contact.dc.html'],
+];
+class Component extends DCLogic {
+  state = { w: 1280, scrolled: false, dark: false, hidden: false, menu: false };
+  componentDidMount() {
+    this.lastY = window.scrollY;
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    this.update = () => {
+      this.raf = 0;
+      const y = Math.max(0, window.scrollY), dy = y - this.lastY;
+      let hidden = this.state.hidden;
+      if (y < 80 || this.state.menu) hidden = false;
+      else if (dy > 6) hidden = true;
+      else if (dy < -6) hidden = false;
+      if (Math.abs(dy) > 6 || y < 80) this.lastY = y;
+      let dark = false;
+      document.querySelectorAll('[data-theme="dark"]').forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top <= 48 && r.bottom >= 48) dark = true;
+      });
+      const scrolled = y > 24;
+      if (scrolled !== this.state.scrolled || dark !== this.state.dark || hidden !== this.state.hidden) this.setState({ scrolled, dark, hidden });
+    };
+    this.onScroll = () => { if (!this.raf) this.raf = requestAnimationFrame(this.update); };
+    this.onKey = (e) => { if (e.key === 'Escape') this.setState({ menu: false }); };
+    this.onFocus = (e) => { if (this.state.hidden && e.target.closest && e.target.closest('header')) this.setState({ hidden: false }); };
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('keydown', this.onKey);
+    document.addEventListener('focusin', this.onFocus);
+    this.onResize(); this.update();
+    setTimeout(this.update, 600);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('keydown', this.onKey);
+    document.removeEventListener('focusin', this.onFocus);
+    this.raf && cancelAnimationFrame(this.raf);
+  }
+  componentDidUpdate(_, prev) { if (prev.menu !== this.state.menu) document.body.style.overflow = this.state.menu ? 'hidden' : ''; }
+  renderVals() {
+    const s = this.state, page = this.props.page ?? 'home', dark = s.dark, sc = s.scrolled, desktop = s.w >= 960;
+    const fg = dark ? '#FAF8F3' : '#0B0B0D';
+    const wa = this.props.whatsapp ?? false;
+    return {
+      desktop, mobile: !desktop, wide: s.w >= 1240,
+      top: sc ? '14px' : (desktop ? '22px' : '14px'),
+      y: s.hidden ? '-140%' : '0%',
+      maxW: sc ? '1120px' : '1360px',
+      h: sc ? '62px' : '70px',
+      padL: sc ? '10px' : (desktop ? '24px' : '12px'), padR: sc ? '8px' : (desktop ? '24px' : '12px'),
+      logoSize: sc ? '40px' : '44px',
+      bg: sc ? (dark ? 'rgba(25,25,28,.78)' : 'rgba(250,248,243,.8)') : 'rgba(250,248,243,0)',
+      border: sc ? (dark ? 'rgba(250,248,243,.1)' : 'rgba(222,217,205,.9)') : 'rgba(222,217,205,0)',
+      shadow: sc ? (dark ? '0 14px 40px -18px rgba(0,0,0,.6)' : '0 14px 40px -20px rgba(11,11,13,.22)') : '0 0 0 0 rgba(11,11,13,0)',
+      blur: sc ? 'saturate(1.3) blur(16px)' : 'none',
+      border2: dark ? 'rgba(250,248,243,.2)' : '#DED9CD',
+      hoverBg: dark ? 'rgba(250,248,243,.08)' : 'rgba(11,11,13,.05)',
+      fg, sub: dark ? '#D6A63A' : '#8B6B1F',
+      ctaH: sc ? '46px' : '48px',
+      ctaBg: dark ? '#D6A63A' : '#19191C', ctaFg: dark ? '#0B0B0D' : '#FFFFFF', ctaArrow: dark ? '#0B0B0D' : '#D6A63A',
+      links: LINKS.map(([id, label, href], i) => ({ label, href, num: String(i + 1).padStart(2, '0'), current: id === page ? 'page' : undefined, color: id === page ? fg : (dark ? '#B4B0A6' : '#5E5B54'), dot: id === page ? 1 : 0, bg: 'transparent' })),
+      menu: s.menu, menuHidden: !s.menu,
+      menuClip: s.menu ? 'inset(0 0 0 0)' : 'inset(0 0 100% 0)', menuVis: s.menu ? 'visible' : 'hidden',
+      openMenu: () => this.setState({ menu: true, hidden: false }), closeMenu: () => this.setState({ menu: false }),
+      midHref: wa ? 'https://wa.me/919731391404' : 'https://maps.app.goo.gl/Dq4h7Skoro9VBBkw8',
+      midLabel: wa ? 'WhatsApp' : 'Directions',
+    };
+  }
+}
+</script>
+</body>
+</html>
