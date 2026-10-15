@@ -44,3 +44,14 @@
   .m-footer-grid nav > div:last-child, .m-footer-grid > div > div:last-child { gap: 0 !important; }
   .m-footer-grid nav a, .m-footer-grid > div:not(:first-child) a { padding: 7px 0; }
 }
+
+/* About: the clinic-experience list is only meant to stay pinned beside the
+   tall image column on the desktop 2-up layout. Below 1000px that grid
+   collapses to a single column (see About.dc.html), so the sticky list and
+   the images below it share the same scroll container; without this, the
+   list stays pinned past its own row and visually overlaps the images that
+   follow. Drop the pin whenever the grid isn't 2-up. */
+@media (max-width: 999px) {
+  .m-clinic-sticky { position: static !important; top: auto !important; }
+}
+
