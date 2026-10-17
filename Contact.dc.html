@@ -1,16 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book an Appointment · Smithara Dental Care, Rajarajeshwari Nagar</title>
+<meta name="description" content="Book an appointment with Dr. Sushmitha at Smithara Dental Care, Kenchenhalli, Rajarajeshwari Nagar, Bengaluru. Call +91 97313 91404.">
+<link rel="canonical" href="https://smitharadetalcare.vercel.app/Contact.dc.html">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#FAF8F3">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Smithara Dental Care">
+<meta property="og:locale" content="en_IN">
+<meta property="og:url" content="https://smitharadetalcare.vercel.app/Contact.dc.html">
+<meta property="og:title" content="Book an Appointment · Smithara Dental Care">
+<meta property="og:description" content="Contact Smithara Dental Care, Rajarajeshwari Nagar, Bengaluru. Call +91 97313 91404.">
+<meta property="og:image" content="https://smitharadetalcare.vercel.app/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://smitharadetalcare.vercel.app/" },
+    { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://smitharadetalcare.vercel.app/Contact.dc.html" }
+  ]
+}
+</script>
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="./mobile.css">
-<title>Book an Appointment · Smithara Dental Care, Rajarajeshwari Nagar</title>
-<meta name="description" content="Book an appointment with Dr. Sushmitha at Smithara Dental Care, Kenchenhalli, Rajarajeshwari Nagar, Bengaluru. Call +91 97313 91404.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Manrope:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap">
@@ -108,12 +133,23 @@ input,select,textarea,button{font-family:inherit}
             <sc-if value="{{ treatmentHas }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#B3412E">{{ treatmentErr }}</span></sc-if>
           </label>
           <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:13px;font-weight:600">Message / reason for enquiry <span style="color:#9A7420">*</span></span>
-            <textarea name="message" rows="4" aria-invalid="{{ messageHas }}" placeholder="e.g. Tooth pain, teeth cleaning, consultation for a new treatment…" style="padding:14px 16px;border-radius:6px;border:1px solid {{ messageBorder }};background:#FFFFFF;font-size:16px;line-height:1.6;color:#0B0B0D;outline:none;resize:vertical" style-focus="border-color:#19191C;box-shadow:0 0 0 3px rgba(214,166,58,.25)">{{ messagePrefill }}</textarea>
+            <textarea name="message" rows="4" aria-invalid="{{ messageHas }}" placeholder="e.g. Tooth pain, teeth cleaning, consultation for a new treatment…" style="padding:14px 16px;border-radius:6px;border:1px solid {{ messageBorder }};background:#FFFFFF;font-size:16px;line-height:1.6;color:#0B0B0D;outline:none;resize:vertical" style-focus="border-color:#19191C;box-shadow:0 0 0 3px rgba(214,166,58,.25)"></textarea>
             <sc-if value="{{ messageHas }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#B3412E">{{ messageErr }}</span></sc-if>
           </label>
-          <button type="submit" style="display:inline-flex;align-items:center;justify-content:center;gap:12px;height:60px;border-radius:6px;border:0;background:#19191C;color:#FFFFFF;font-size:16px;font-weight:600;cursor:pointer;transition:gap .45s cubic-bezier(.2,.7,.2,1),background .3s" style-hover="gap:18px;background:#0B0B0D">Request Appointment <span aria-hidden="true" style="color:#D6A63A">→</span></button>
+          <button type="submit" disabled="{{ sending }}" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:12px;height:60px;border-radius:6px;border:0;background:#19191C;color:#FFFFFF;font-size:16px;font-weight:600;cursor:{{ submitCursor }};opacity:{{ submitOpacity }};transition:gap .45s cubic-bezier(.2,.7,.2,1),background .3s" style-hover="gap:18px;background:#0B0B0D">{{ submitLabel }} <span aria-hidden="true" style="color:#D6A63A">→</span></button>
+          <sc-if value="{{ offline }}" hint-placeholder-val="{{ false }}">
+            <div role="status" style="padding:18px;border-radius:6px;background:#F6EFD9;border:1px solid #D9C590;display:flex;flex-direction:column;gap:14px">
+              <p style="margin:0;font-size:15px;line-height:1.6;color:#2A2824"><strong style="font-weight:700">Online requests aren’t connected yet, so your details have not been sent.</strong> Please call the clinic, or send the same details to us on WhatsApp.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:10px">
+                <a href="{{ waHref }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 22px;border-radius:6px;background:#19191C;color:#FFFFFF;font-size:14px;font-weight:600" style-hover="color:#FFFFFF;background:#0B0B0D">Send on WhatsApp <span aria-hidden="true" style="color:#D6A63A">↗</span></a>
+                <a href="tel:+919731391404" style="display:inline-flex;align-items:center;height:50px;padding:0 22px;border-radius:6px;border:1px solid #CFC8B8;background:#FFFFFF;font-size:14px;font-weight:600" style-hover="border-color:#0B0B0D;color:#0B0B0D">Call +91 97313 91404</a>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ failed }}" hint-placeholder-val="{{ false }}">
+            <div role="alert" style="padding:14px 16px;border-radius:6px;background:#FBEDE9;border:1px solid #EBC4BA;color:#8E3423;font-size:14px;line-height:1.5">We couldn’t send your request. Please try again, or call the clinic on <a href="tel:+919731391404" style="color:#8E3423;font-weight:700;text-decoration:underline">+91 97313 91404</a>.</div>
+          </sc-if>
           <p style="margin:0;font-size:13px;line-height:1.6;color:#5E5B54">This is a request, not a confirmed booking. The clinic will contact you to confirm.</p>
-          <sc-if value="{{ notes }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.4;color:#7A5F2E;background:#F6EFD9;border:1px dashed #D9C590;padding:4px 8px;border-radius:3px;align-self:flex-start">DEV · connect form to clinic inbox / booking system</span></sc-if>
         </form>
       </sc-if>
       <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
@@ -141,15 +177,26 @@ input,select,textarea,button{font-family:inherit}
 
 <dc-import name="SiteFooter" hint-size="100%,560px"></dc-import>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;showNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Review&quot;},&quot;whatsappConfirmed&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Review&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;whatsappConfirmed&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Review&quot;}}">
+// Appointment API URL (POST, JSON body: name, phone, treatment, message). Leave empty until the backend exists;
+// while empty, submitting tells the visitor the request was not sent and offers call / WhatsApp instead.
+const BOOKING_ENDPOINT = '';
+const CLINIC_WHATSAPP = '919731391404';
 const TREATMENT_TITLES = { 'preventive-dentistry': 'Preventive Dentistry', 'root-canal-treatment': 'Root Canal Treatment', 'dental-implants': 'Dental Implants', 'cosmetic-dentistry': 'Cosmetic Dentistry', 'teeth-whitening': 'Teeth Whitening', 'crowns-and-bridges': 'Crowns & Bridges', 'orthodontics-aligners': 'Orthodontics / Aligners', 'gum-care': 'Gum Care', 'dentures-restorative': 'Dentures / Restorative Care', 'oral-surgery': 'Oral Surgery', 'laser-dentistry': 'Laser Dentistry', 'pediatric-dentistry': 'Pediatric Dentistry' };
+const TREATMENT_OPTION = { 'preventive-dentistry': 'Dental Cleaning & Check-up', 'root-canal-treatment': 'Root Canal Treatment', 'dental-implants': 'Dental Implants', 'cosmetic-dentistry': 'Cosmetic Dentistry', 'teeth-whitening': 'Teeth Whitening', 'crowns-and-bridges': 'Crowns & Bridges', 'orthodontics-aligners': 'Braces & Aligners', 'gum-care': 'Gum Treatment', 'pediatric-dentistry': 'Pediatric Dentistry' };
 const FIELDS = ['name', 'phone', 'treatment', 'message'];
 
 class Component extends DCLogic {
-  state = { errors: {}, sent: false, sum: {}, messagePrefill: '' };
+  state = { errors: {}, status: 'idle', sum: {} };
   componentDidMount() {
+    // Fields are uncontrolled (the runtime can't bind textarea content), so prefill them directly.
     const t = new URLSearchParams(window.location.search).get('t');
-    if (t && TREATMENT_TITLES[t]) this.setState({ messagePrefill: `Enquiry regarding: ${TREATMENT_TITLES[t]}` });
+    if (t && TREATMENT_TITLES[t]) {
+      const msg = document.querySelector('textarea[name="message"]');
+      if (msg) msg.value = `Enquiry regarding: ${TREATMENT_TITLES[t]}`;
+      const sel = document.querySelector('select[name="treatment"]');
+      if (sel) sel.value = TREATMENT_OPTION[t] || 'Other';
+    }
   }
   validate(fd) {
     const e = {};
@@ -167,21 +214,36 @@ class Component extends DCLogic {
   renderVals() {
     const s = this.state, v = {};
     FIELDS.forEach((k) => { const m = s.errors[k]; v[k + 'Has'] = !!m; v[k + 'Err'] = m || ''; v[k + 'Border'] = m ? '#B3412E' : '#DED9CD'; });
+    const sending = s.status === 'sending', sum = s.sum;
+    const waText = `Hello Smithara Dental Care, I'd like to request an appointment.\nName: ${sum.name}\nPhone: ${sum.phone}\nTreatment: ${sum.treatment}\nMessage: ${sum.message}`;
     return {
       ...v,
-      notes: this.props.showNotes ?? true, wa: this.props.whatsappConfirmed ?? true,
+      wa: this.props.whatsappConfirmed ?? true,
       hasErrors: Object.keys(s.errors).length > 0,
-      formVisible: !s.sent, sent: s.sent, sum: s.sum,
-      messagePrefill: s.messagePrefill,
-      clearErr: (e) => { const n = e.target && e.target.name; if (n && s.errors[n]) this.setState((st) => { const er = { ...st.errors }; delete er[n]; return { errors: er }; }); },
+      formVisible: s.status !== 'sent', sent: s.status === 'sent', sum,
+      sending, offline: s.status === 'offline', failed: s.status === 'error',
+      submitLabel: sending ? 'Sending…' : 'Request Appointment',
+      submitCursor: sending ? 'wait' : 'pointer', submitOpacity: sending ? '.7' : '1',
+      waHref: `https://wa.me/${CLINIC_WHATSAPP}?text=${encodeURIComponent(waText)}`,
+      clearErr: (e) => {
+        const n = e.target && e.target.name;
+        if (n && s.errors[n]) this.setState((st) => { const er = { ...st.errors }; delete er[n]; return { errors: er }; });
+        if (s.status === 'offline' || s.status === 'error') this.setState({ status: 'idle' });
+      },
       submit: (e) => {
         e.preventDefault();
+        if (sending) return;
         const fd = new FormData(e.currentTarget);
         const errors = this.validate(fd);
-        if (Object.keys(errors).length) { this.setState({ errors }); const f = e.currentTarget.querySelector('[name="' + Object.keys(errors)[0] + '"]'); f && f.focus(); return; }
-        this.setState({ sent: true, errors: {}, sum: { name: fd.get('name'), phone: fd.get('phone'), treatment: fd.get('treatment'), message: fd.get('message') } });
+        if (Object.keys(errors).length) { this.setState({ errors, status: 'idle' }); const f = e.currentTarget.querySelector('[name="' + Object.keys(errors)[0] + '"]'); f && f.focus(); return; }
+        const data = { name: fd.get('name').trim(), phone: fd.get('phone').trim(), treatment: fd.get('treatment'), message: fd.get('message').trim() };
+        if (!BOOKING_ENDPOINT) { this.setState({ status: 'offline', errors: {}, sum: data }); return; }
+        this.setState({ status: 'sending', errors: {}, sum: data });
+        fetch(BOOKING_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) })
+          .then((r) => { if (!r.ok) throw new Error('HTTP ' + r.status); this.setState({ status: 'sent' }); })
+          .catch(() => this.setState({ status: 'error' }));
       },
-      reset: () => this.setState({ sent: false, errors: {}, sum: {}, messagePrefill: '' }),
+      reset: () => this.setState({ status: 'idle', errors: {}, sum: {} }),
     };
   }
 }

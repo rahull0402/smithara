@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -120,7 +121,10 @@ class Component extends DCLogic {
     document.removeEventListener('focusin', this.onFocus);
     this.raf && cancelAnimationFrame(this.raf);
   }
-  componentDidUpdate(_, prev) { if (prev.menu !== this.state.menu) document.body.style.overflow = this.state.menu ? 'hidden' : ''; }
+  componentDidUpdate() {
+    // The runtime passes only prevProps here, so track the last applied menu state ourselves.
+    if (this.menuLocked !== this.state.menu) { this.menuLocked = this.state.menu; document.body.style.overflow = this.state.menu ? 'hidden' : ''; }
+  }
   renderVals() {
     const s = this.state, page = this.props.page ?? 'home', dark = s.dark, sc = s.scrolled, desktop = s.w >= 960;
     const fg = dark ? '#FAF8F3' : '#0B0B0D';

@@ -1,16 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dental Treatments · Smithara Dental Care, Rajarajeshwari Nagar</title>
+<meta name="description" content="Preventive care, root canal treatment, implants, crowns and bridges, aligners, whitening and pediatric dentistry at Smithara Dental Care, Rajarajeshwari Nagar, Bengaluru.">
+<link rel="canonical" href="https://smitharadetalcare.vercel.app/Treatments.dc.html">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#FAF8F3">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Smithara Dental Care">
+<meta property="og:locale" content="en_IN">
+<meta property="og:url" content="https://smitharadetalcare.vercel.app/Treatments.dc.html">
+<meta property="og:title" content="Dental Treatments · Smithara Dental Care">
+<meta property="og:description" content="Dental treatments by Dr. Sushmitha at Smithara Dental Care, Rajarajeshwari Nagar, Bengaluru.">
+<meta property="og:image" content="https://smitharadetalcare.vercel.app/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://smitharadetalcare.vercel.app/" },
+    { "@type": "ListItem", "position": 2, "name": "Treatments", "item": "https://smitharadetalcare.vercel.app/Treatments.dc.html" }
+  ]
+}
+</script>
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="./mobile.css">
-<title>Dental Treatments · Smithara Dental Care, Rajarajeshwari Nagar</title>
-<meta name="description" content="Dental treatments at Smithara Dental Care by Dr. Sushmitha, Rajarajeshwari Nagar, Bengaluru.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Manrope:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap">
@@ -50,7 +75,7 @@ a:hover{color:#8B6B1F}
 <section aria-label="Smile banner" style="padding:0 0 clamp(80px,9vw,128px)">
   <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,4.5vw,56px)">
     <div data-hero="5" data-kind="mask" style="width:100%;aspect-ratio:21/9;min-height:260px;border-radius:8px;overflow:hidden">
-      <img src="teeth.jpg" alt="Close-up of a patient's healthy, bright smile" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover">
+      <img src="teeth.jpg" alt="Close-up of a patient's healthy, bright smile" style="display:block;width:100%;height:100%;object-fit:cover">
     </div>
   </div>
 </section>
@@ -62,7 +87,6 @@ a:hover{color:#8B6B1F}
         <p data-reveal="" style="margin:0;display:flex;align-items:center;gap:12px;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#8B6B1F"><svg aria-hidden="true" viewBox="0 0 10 10" width="10" height="10"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z" fill="#D6A63A"></path></svg>Treatment directory</p>
         <h2 id="h-dir" data-reveal="" data-delay="80" style="margin:20px 0 0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,4.2vw,60px);line-height:1;letter-spacing:-.01em">All treatments</h2>
       </div>
-      <sc-if value="{{ notes }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.4;color:#7A5F2E;background:#F6EFD9;border:1px dashed #D9C590;padding:4px 8px;border-radius:3px;display:inline-block">CLIENT INPUT · remove any treatment not offered · verify descriptions</span></sc-if>
     </div>
     <div style="margin-top:clamp(40px,5vw,64px);border-bottom:1px solid #DED9CD">
       <div data-reveal=""><dc-import name="TreatmentRow" num="01" title="Preventive Dentistry" slug="preventive-dentistry" desc="Routine care for maintaining healthy teeth and gums." default-open="{{ true }}" hint-size="100%,170px"></dc-import></div>
@@ -97,10 +121,10 @@ a:hover{color:#8B6B1F}
 
 <dc-import name="SiteFooter" hint-size="100%,560px"></dc-import>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;showNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Review&quot;},&quot;whatsappConfirmed&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Review&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;whatsappConfirmed&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Review&quot;}}">
 class Component extends DCLogic {
   renderVals() {
-    return { notes: this.props.showNotes ?? true, wa: this.props.whatsappConfirmed ?? true };
+    return { wa: this.props.whatsappConfirmed ?? true };
   }
 }
 </script>

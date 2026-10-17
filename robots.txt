@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://smitharadetalcare.vercel.app/sitemap.xml
