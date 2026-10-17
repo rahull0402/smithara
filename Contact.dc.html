@@ -91,6 +91,22 @@ input,select,textarea,button{font-family:inherit}
               <sc-if value="{{ phoneHas }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#B3412E">{{ phoneErr }}</span></sc-if>
             </label>
           </div>
+          <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:13px;font-weight:600">Treatment interested in <span style="color:#9A7420">*</span></span>
+            <select name="treatment" aria-invalid="{{ treatmentHas }}" style="height:54px;padding:0 16px;border-radius:6px;border:1px solid {{ treatmentBorder }};background:#FFFFFF;font-size:16px;color:#0B0B0D;outline:none;transition:border-color .3s,box-shadow .3s" style-focus="border-color:#19191C;box-shadow:0 0 0 3px rgba(214,166,58,.25)">
+              <option value="" disabled selected>Select a treatment</option>
+              <option value="Teeth Whitening">Teeth Whitening</option>
+              <option value="Braces &amp; Aligners">Braces &amp; Aligners</option>
+              <option value="Root Canal Treatment">Root Canal Treatment</option>
+              <option value="Dental Implants">Dental Implants</option>
+              <option value="Crowns &amp; Bridges">Crowns &amp; Bridges</option>
+              <option value="Dental Cleaning &amp; Check-up">Dental Cleaning &amp; Check-up</option>
+              <option value="Cosmetic Dentistry">Cosmetic Dentistry</option>
+              <option value="Gum Treatment">Gum Treatment</option>
+              <option value="Pediatric Dentistry">Pediatric Dentistry</option>
+              <option value="Other">Other</option>
+            </select>
+            <sc-if value="{{ treatmentHas }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#B3412E">{{ treatmentErr }}</span></sc-if>
+          </label>
           <label style="display:flex;flex-direction:column;gap:8px"><span style="font-size:13px;font-weight:600">Message / reason for enquiry <span style="color:#9A7420">*</span></span>
             <textarea name="message" rows="4" aria-invalid="{{ messageHas }}" placeholder="e.g. Tooth pain, teeth cleaning, consultation for a new treatment…" style="padding:14px 16px;border-radius:6px;border:1px solid {{ messageBorder }};background:#FFFFFF;font-size:16px;line-height:1.6;color:#0B0B0D;outline:none;resize:vertical" style-focus="border-color:#19191C;box-shadow:0 0 0 3px rgba(214,166,58,.25)">{{ messagePrefill }}</textarea>
             <sc-if value="{{ messageHas }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#B3412E">{{ messageErr }}</span></sc-if>
@@ -108,6 +124,7 @@ input,select,textarea,button{font-family:inherit}
           <div style="width:100%;border-top:1px solid #DED9CD;padding-top:20px;display:grid;grid-template-columns:120px 1fr;gap:10px 16px;font-size:14px">
             <span style="color:#5E5B54">Name</span><span style="font-weight:600">{{ sum.name }}</span>
             <span style="color:#5E5B54">Phone</span><span style="font-weight:600">{{ sum.phone }}</span>
+            <span style="color:#5E5B54">Treatment</span><span style="font-weight:600">{{ sum.treatment }}</span>
             <span style="color:#5E5B54">Message</span><span style="font-weight:600">{{ sum.message }}</span>
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px">
@@ -126,7 +143,7 @@ input,select,textarea,button{font-family:inherit}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;showNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Review&quot;},&quot;whatsappConfirmed&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Review&quot;}}">
 const TREATMENT_TITLES = { 'preventive-dentistry': 'Preventive Dentistry', 'root-canal-treatment': 'Root Canal Treatment', 'dental-implants': 'Dental Implants', 'cosmetic-dentistry': 'Cosmetic Dentistry', 'teeth-whitening': 'Teeth Whitening', 'crowns-and-bridges': 'Crowns & Bridges', 'orthodontics-aligners': 'Orthodontics / Aligners', 'gum-care': 'Gum Care', 'dentures-restorative': 'Dentures / Restorative Care', 'oral-surgery': 'Oral Surgery', 'laser-dentistry': 'Laser Dentistry', 'pediatric-dentistry': 'Pediatric Dentistry' };
-const FIELDS = ['name', 'phone', 'message'];
+const FIELDS = ['name', 'phone', 'treatment', 'message'];
 
 class Component extends DCLogic {
   state = { errors: {}, sent: false, sum: {}, messagePrefill: '' };
@@ -138,10 +155,12 @@ class Component extends DCLogic {
     const e = {};
     const name = (fd.get('name') || '').trim();
     const phone = (fd.get('phone') || '').replace(/[\s\-()]/g, '').replace(/^(\+?91)/, '');
+    const treatment = (fd.get('treatment') || '').trim();
     const message = (fd.get('message') || '').trim();
     if (name.length < 2) e.name = 'Please enter your full name.';
     if (!phone) e.phone = 'Please enter a phone number.';
     else if (!/^[6-9]\d{9}$/.test(phone)) e.phone = 'Enter a valid 10-digit mobile number.';
+    if (!treatment) e.treatment = 'Please select a treatment.';
     if (message.length < 3) e.message = 'Please tell us the reason for your enquiry.';
     return e;
   }
@@ -160,7 +179,7 @@ class Component extends DCLogic {
         const fd = new FormData(e.currentTarget);
         const errors = this.validate(fd);
         if (Object.keys(errors).length) { this.setState({ errors }); const f = e.currentTarget.querySelector('[name="' + Object.keys(errors)[0] + '"]'); f && f.focus(); return; }
-        this.setState({ sent: true, errors: {}, sum: { name: fd.get('name'), phone: fd.get('phone'), message: fd.get('message') } });
+        this.setState({ sent: true, errors: {}, sum: { name: fd.get('name'), phone: fd.get('phone'), treatment: fd.get('treatment'), message: fd.get('message') } });
       },
       reset: () => this.setState({ sent: false, errors: {}, sum: {}, messagePrefill: '' }),
     };

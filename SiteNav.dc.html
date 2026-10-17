@@ -19,7 +19,7 @@
     </a>
     <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
       <nav aria-label="Primary" style="display:flex;align-items:center;gap:6px">
-        <sc-for list="{{ links }}" as="l" hint-placeholder-count="4">
+        <sc-for list="{{ links }}" as="l" hint-placeholder-count="5">
           <a href="{{ l.href }}" aria-current="{{ l.current }}" style="position:relative;font-family:Manrope,sans-serif;font-size:14px;font-weight:500;color:{{ l.color }};padding:9px 16px;border-radius:999px;background:{{ l.bg }};transition:background .35s,color .3s" style-hover="background:{{ hoverBg }};color:{{ fg }}">
             {{ l.label }}
             <svg aria-hidden="true" viewBox="0 0 10 10" width="6" height="6" style="position:absolute;left:50%;bottom:1px;margin-left:-3px;opacity:{{ l.dot }};transition:opacity .4s"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z" fill="#D6A63A"></path></svg>
@@ -48,7 +48,7 @@
     <button onClick="{{ closeMenu }}" aria-label="Close menu" style="width:44px;height:44px;border-radius:50%;border:1px solid rgba(250,248,243,.18);background:transparent;color:#FAF8F3;font-size:22px;line-height:1;cursor:pointer">×</button>
   </div>
   <nav aria-label="Mobile" style="display:flex;flex-direction:column;margin-top:40px">
-    <sc-for list="{{ links }}" as="l" hint-placeholder-count="4">
+    <sc-for list="{{ links }}" as="l" hint-placeholder-count="5">
       <a href="{{ l.href }}" onClick="{{ closeMenu }}" style="display:flex;align-items:baseline;gap:18px;padding:14px 0;border-bottom:1px solid rgba(250,248,243,.1);font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:500;line-height:1.1;color:#FAF8F3">
         <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#D6A63A;width:22px">{{ l.num }}</span>{{ l.label }}
       </a>
@@ -74,11 +74,12 @@
   </div>
 </sc-if>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:120},&quot;page&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;treatments&quot;,&quot;about&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;whatsapp&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:120},&quot;page&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;treatments&quot;,&quot;about&quot;,&quot;faq&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;whatsapp&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
 const LINKS = [
   ['home', 'Home', 'index.html'],
   ['treatments', 'Treatments', 'Treatments.dc.html'],
   ['about', 'About', 'About.dc.html'],
+  ['faq', 'FAQ', 'FAQ.dc.html'],
   ['contact', 'Contact', 'Contact.dc.html'],
 ];
 class Component extends DCLogic {
