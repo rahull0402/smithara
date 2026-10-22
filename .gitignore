@@ -1,0 +1,6 @@
+# Local environment files (real secrets live in Vercel project settings)
+.env
+.env.*
+!.env.example
+.vercel
+node_modules

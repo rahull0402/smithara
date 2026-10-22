@@ -178,9 +178,10 @@ input,select,textarea,button{font-family:inherit}
 <dc-import name="SiteFooter" hint-size="100%,560px"></dc-import>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;whatsappConfirmed&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Review&quot;}}">
-// Appointment API URL (POST, JSON body: name, phone, treatment, message). Leave empty until the backend exists;
-// while empty, submitting tells the visitor the request was not sent and offers call / WhatsApp instead.
-const BOOKING_ENDPOINT = '';
+// Appointment API URL (POST, JSON body: name, phone, treatment, message; replies { success, message }).
+// Served by api/contact.js, which forwards to the clinic's Google Apps Script. If emptied, submitting
+// tells the visitor the request was not sent and offers call / WhatsApp instead.
+const BOOKING_ENDPOINT = '/api/contact';
 const CLINIC_WHATSAPP = '919731391404';
 const TREATMENT_TITLES = { 'preventive-dentistry': 'Preventive Dentistry', 'root-canal-treatment': 'Root Canal Treatment', 'dental-implants': 'Dental Implants', 'cosmetic-dentistry': 'Cosmetic Dentistry', 'teeth-whitening': 'Teeth Whitening', 'crowns-and-bridges': 'Crowns & Bridges', 'orthodontics-aligners': 'Orthodontics / Aligners', 'gum-care': 'Gum Care', 'dentures-restorative': 'Dentures / Restorative Care', 'oral-surgery': 'Oral Surgery', 'laser-dentistry': 'Laser Dentistry', 'pediatric-dentistry': 'Pediatric Dentistry' };
 const TREATMENT_OPTION = { 'preventive-dentistry': 'Dental Cleaning & Check-up', 'root-canal-treatment': 'Root Canal Treatment', 'dental-implants': 'Dental Implants', 'cosmetic-dentistry': 'Cosmetic Dentistry', 'teeth-whitening': 'Teeth Whitening', 'crowns-and-bridges': 'Crowns & Bridges', 'orthodontics-aligners': 'Braces & Aligners', 'gum-care': 'Gum Treatment', 'pediatric-dentistry': 'Pediatric Dentistry' };
@@ -201,14 +202,16 @@ class Component extends DCLogic {
   validate(fd) {
     const e = {};
     const name = (fd.get('name') || '').trim();
-    const phone = (fd.get('phone') || '').replace(/[\s\-()]/g, '').replace(/^(\+?91)/, '');
+    const phone = (fd.get('phone') || '').replace(/[\s\-()]/g, '');
     const treatment = (fd.get('treatment') || '').trim();
     const message = (fd.get('message') || '').trim();
     if (name.length < 2) e.name = 'Please enter your full name.';
+    else if (name.length > 100) e.name = 'Please keep your name under 100 characters.';
     if (!phone) e.phone = 'Please enter a phone number.';
-    else if (!/^[6-9]\d{9}$/.test(phone)) e.phone = 'Enter a valid 10-digit mobile number.';
+    else if (!/^(?:\+91|91|0)?[6-9]\d{9}$/.test(phone)) e.phone = 'Enter a valid 10-digit mobile number.';
     if (!treatment) e.treatment = 'Please select a treatment.';
     if (message.length < 3) e.message = 'Please tell us the reason for your enquiry.';
+    else if (message.length > 2000) e.message = 'Please keep your message under 2000 characters.';
     return e;
   }
   renderVals() {
@@ -232,16 +235,23 @@ class Component extends DCLogic {
       },
       submit: (e) => {
         e.preventDefault();
-        if (sending) return;
+        if (sending || this.inFlight) return;
         const fd = new FormData(e.currentTarget);
         const errors = this.validate(fd);
         if (Object.keys(errors).length) { this.setState({ errors, status: 'idle' }); const f = e.currentTarget.querySelector('[name="' + Object.keys(errors)[0] + '"]'); f && f.focus(); return; }
         const data = { name: fd.get('name').trim(), phone: fd.get('phone').trim(), treatment: fd.get('treatment'), message: fd.get('message').trim() };
         if (!BOOKING_ENDPOINT) { this.setState({ status: 'offline', errors: {}, sum: data }); return; }
+        this.inFlight = true;
         this.setState({ status: 'sending', errors: {}, sum: data });
+        // Only a confirmed { success: true } counts as sent; any other reply keeps the form and its values.
         fetch(BOOKING_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) })
-          .then((r) => { if (!r.ok) throw new Error('HTTP ' + r.status); this.setState({ status: 'sent' }); })
-          .catch(() => this.setState({ status: 'error' }));
+          .then((r) => r.json().catch(() => ({})).then((j) => ({ ok: r.ok, j })))
+          .then(({ ok, j }) => {
+            this.inFlight = false;
+            if (ok && j && j.success === true) this.setState({ status: 'sent' });
+            else if (j && j.errors && Object.keys(j.errors).length) this.setState({ status: 'idle', errors: j.errors });
+            else this.setState({ status: 'error' });
+          }, () => { this.inFlight = false; this.setState({ status: 'error' }); });
       },
       reset: () => this.setState({ status: 'idle', errors: {}, sum: {} }),
     };

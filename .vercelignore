@@ -1,2 +1,4 @@
 scripts
 README.md
+tests
+.env*
