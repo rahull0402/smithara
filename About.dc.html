@@ -48,6 +48,27 @@ a{color:#0B0B0D;text-decoration:none}
 a:hover{color:#8B6B1F}
 ::selection{background:#E8D39A}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+/* Inside the clinic: mobile = image then text per chapter; 720px+ = pinned text beside a scrolling, staggered image */
+.in-row{display:flex;flex-direction:column;gap:24px}
+.in-row+.in-row{margin-top:56px}
+.in-fig{margin:0;order:-1;width:100%}
+.in-img{overflow:hidden;border-radius:6px;background-color:#ECE8DF}
+.in-img img{display:block;width:100%;height:100%;object-fit:cover}
+.in-h{margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,8vw,36px);line-height:1.08;letter-spacing:-.01em;text-wrap:balance}
+@media (min-width:720px){
+  .in-row{display:grid;grid-template-columns:5fr 6fr;gap:clamp(32px,5vw,112px);align-items:start}
+  .in-row+.in-row{margin-top:clamp(72px,9vw,140px)}
+  .in-fig{order:0;grid-column:2;grid-row:1}
+  .in-text{grid-column:1;grid-row:1;position:sticky;top:120px}
+  .in-fig--2{width:92%}
+  .in-fig--3{width:84%;justify-self:end}
+  .in-h{font-size:clamp(30px,3.4vw,46px)}
+}
+@media (min-width:1000px){
+  .in-row{grid-template-columns:5fr 7fr}
+  .in-fig--2{width:86%}
+  .in-fig--3{width:70%}
+}
 </style>
 </helmet>
 
@@ -134,6 +155,48 @@ a:hover{color:#8B6B1F}
     <div style="display:flex;flex-direction:column;gap:24px">
       <figure style="margin:0">
         <div data-reveal="img" style="aspect-ratio:4/5;overflow:hidden"><img src="assets/2J7A8489.JPG" alt="Dr. Sushmitha pointing up at the Smithara Dental Care signboard outside the clinic" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover;object-position:50% 42%;border-radius:6px;background-color:#ECE8DF"></div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="inside-the-clinic" aria-labelledby="h-inside" style="padding:clamp(88px,11vw,176px) 0 clamp(72px,9vw,144px)">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,4.5vw,56px)">
+    <div style="margin-bottom:clamp(48px,6vw,96px);max-width:760px">
+      <p data-reveal="" style="margin:0;display:flex;align-items:center;gap:12px;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#8B6B1F"><svg aria-hidden="true" viewBox="0 0 10 10" width="10" height="10"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z" fill="#D6A63A"></path></svg>Inside the clinic</p>
+      <h2 id="h-inside" data-reveal="" data-delay="80" style="margin:24px 0 0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(40px,5.2vw,76px);line-height:1;letter-spacing:-.015em;text-wrap:balance">The spaces where <span style="font-style:italic;color:#9A7420">your visit happens.</span></h2>
+    </div>
+
+    <div class="in-row">
+      <div class="in-text">
+        <span data-reveal="" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:#8B6B1F">01</span>
+        <h3 class="in-h" data-reveal="" data-delay="80" style="margin-top:14px">A Calm and Comfortable Space</h3>
+        <p data-reveal="" data-delay="140" style="margin:18px 0 0;font-size:16px;line-height:1.75;color:#5E5B54;max-width:44ch">Our welcoming waiting area is designed to help every visit begin with comfort and ease. With a clean, spacious interior and comfortable seating, we aim to create a relaxed environment for patients before their appointments.</p>
+      </div>
+      <figure class="in-fig in-fig--1">
+        <div class="in-img" data-reveal="img" style="aspect-ratio:5/4"><img src="assets/clinic-waiting-room.jpg" alt="The Smithara Dental Care waiting area with patient seating, cream curtains and a clean tiled floor" width="1672" height="941" loading="lazy" decoding="async" style="object-position:76% 50%"></div>
+      </figure>
+    </div>
+
+    <div class="in-row">
+      <div class="in-text">
+        <span data-reveal="" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:#8B6B1F">02</span>
+        <h3 class="in-h" data-reveal="" data-delay="80" style="margin-top:14px">A Warm Welcome, Every Time</h3>
+        <p data-reveal="" data-delay="140" style="margin:18px 0 0;font-size:16px;line-height:1.75;color:#5E5B54;max-width:44ch">From your first interaction with our team, we want you to feel welcomed and cared for. Our reception area provides a friendly starting point for your visit, where patients can seek assistance and get guidance throughout their appointment.</p>
+      </div>
+      <figure class="in-fig in-fig--2">
+        <div class="in-img" data-reveal="img" style="aspect-ratio:4/3"><img src="assets/clinic-reception.jpg" alt="The reception area at Smithara Dental Care with two front desks" width="1280" height="960" loading="lazy" decoding="async"></div>
+      </figure>
+    </div>
+
+    <div class="in-row">
+      <div class="in-text">
+        <span data-reveal="" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:#8B6B1F">03</span>
+        <h3 class="in-h" data-reveal="" data-delay="80" style="margin-top:14px">Care in a <span style="white-space:nowrap">Well-Equipped</span> Environment</h3>
+        <p data-reveal="" data-delay="140" style="margin:18px 0 0;font-size:16px;line-height:1.75;color:#5E5B54;max-width:44ch">Our treatment area is equipped for everyday dental examinations and procedures, with dedicated dental equipment and an organised clinical workspace. We focus on maintaining a clean environment and providing attentive care tailored to each patient’s needs.</p>
+      </div>
+      <figure class="in-fig in-fig--3">
+        <div class="in-img" data-reveal="img" style="aspect-ratio:3/4"><img src="assets/clinic-treatment-room.jpg" alt="A dental treatment room with a treatment chair, overhead dental light and clinical workspace" width="960" height="1280" loading="lazy" decoding="async"></div>
       </figure>
     </div>
   </div>
